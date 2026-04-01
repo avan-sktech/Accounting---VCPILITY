@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Digital Presence | VCPility — Accounting OS">
+    <Nav />
+    <div class="pt-28 pb-20" style="background:#0d1117;">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+            <div class="text-center mb-16">
+                <p class="section-label mb-4" style="color:#c9a84c;">Managed Growth</p>
+                <h2 class="syne font-bold leading-tight mb-4" style="color:#f0ead6; font-size:clamp(2rem,4vw,2.8rem);">
+                    We build your digital presence. <em style="font-style:italic; color:#c9a84c;">You focus on compliance.</em>
+                </h2>
+                <p style="color:#9da8b8; max-width:680px; margin:0 auto; line-height:1.7;">Not a DIY tool. Our team handles the marketing — you review and approve. From SEO to social media, everything runs under your firm's brand.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 mb-16">
+                <div class="dp-card">
+                    <div class="dp-icon">🌐</div>
+                    <h3 class="dp-title">StoryBrand Website</h3>
+                    <p class="dp-desc">A conversion-optimised website that positions your firm as the guide, your client as the hero, and makes the next step obvious.</p>
+                    <ul class="dp-list">
+                        <li>✓ Built on the StoryBrand framework</li>
+                        <li>✓ Mobile-first, fast-loading</li>
+                        <li>✓ AI chatbot built in</li>
+                    </ul>
+                </div>
+                <div class="dp-card">
+                    <div class="dp-icon">📈</div>
+                    <h3 class="dp-title">Managed SEO</h3>
+                    <p class="dp-desc">We optimise your website, Google Business Profile, and content to rank for the searches your ideal clients are making right now.</p>
+                    <ul class="dp-list">
+                        <li>✓ Local SEO for your suburb and region</li>
+                        <li>✓ Google Business Profile optimisation</li>
+                        <li>✓ Monthly content and blog publishing</li>
+                    </ul>
+                </div>
+                <div class="dp-card">
+                    <div class="dp-icon">⭐</div>
+                    <h3 class="dp-title">Reputation Management</h3>
+                    <p class="dp-desc">Automated review requests after every interaction. AI-powered review responses. Your 5-star reputation grows on autopilot.</p>
+                    <ul class="dp-list">
+                        <li>✓ Automated review requests via SMS and email</li>
+                        <li>✓ AI-powered review responses</li>
+                        <li>✓ Reputation monitoring dashboard</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="/demo" class="btn-primary px-10 py-4 rounded-[3px] text-base inline-block">Build My Digital Presence →</a>
+            </div>
+
+        </div>
+    </div>
+    <Footer />
+</Layout>
+
+<style>
+    .dp-card {
+        background: rgba(240,234,214,0.03); border: 1px solid rgba(240,234,214,0.08);
+        border-radius: 14px; padding: 2rem; transition: border-color 0.3s;
+    }
+    .dp-card:hover { border-color: rgba(201,168,76,0.25); }
+    .dp-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .dp-title {
+        font-family: 'Syne', sans-serif; font-size: 1.1rem;
+        font-weight: 700; color: #f0ead6; margin-bottom: 0.6rem;
+    }
+    .dp-desc {
+        font-size: 0.85rem; color: #9da8b8; line-height: 1.6; margin-bottom: 1rem;
+    }
+    .dp-list { list-style: none; padding: 0; }
+    .dp-list li {
+        font-size: 0.82rem; color: rgba(240,234,214,0.6); padding: 0.25rem 0;
+    }
+</style>

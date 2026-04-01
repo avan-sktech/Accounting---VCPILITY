@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCPility | Accounting OS — Built for Australian Accountants</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Theme Variables ── */
+        :root {
+            --ink:        #faf8f2;
+            --ink-mid:    #f0ece3;
+            --ink-raised: #ffffff;
+            --ink-high:   #e8e4db;
+            --gold:       #c9a84c;
+            --gold-light: #e2c06a;
+            --gold-soft:  #f0d98a;
+            --gold-dim:   rgba(201,168,76,0.12);
+            --gold-border:rgba(201,168,76,0.28);
+            --gold-glow:  rgba(201,168,76,0.08);
+            --teal:       #2eb8a0;
+            --violet:     #7b7fc4;
+            --emerald:    #2a9d72;
+            --text-bright:#0d1117;
+            --text-body:  #3d4a5a;
+            --text-muted: #8896a7;
+            --border:     rgba(13,17,23,0.08);
+            --nav-bg:     rgba(250,248,242,0.92);
+            --mesh-a:     rgba(201,168,76,0.05);
+            --mesh-b:     rgba(201,168,76,0.03);
+            --mesh-c:     rgba(250,248,242,0.6);
+        }
+
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--ink); color: var(--text-bright); -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4,.syne { font-family: 'Fraunces', serif; }
+
+        /* Linen grain */
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0; opacity: 0.5;
+        }
+        .mesh-bg {
+            background:
+                radial-gradient(ellipse 70% 55% at 10% 15%, var(--mesh-a) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 45% at 90% 85%, var(--mesh-b) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 60% at 55% 50%, var(--mesh-c) 0%, transparent 70%),
+                var(--ink);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #e2c06a 0%, #f0d98a 40%, #ffd700 70%, #e2c06a 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        nav { background: var(--nav-bg); backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid var(--gold-border); }
+        .hr-grad { height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent); border: none; margin: 0; }
+        .card { background: var(--ink-raised); border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+        .card:hover { border-color: rgba(201,168,76,0.35); box-shadow: 0 0 40px rgba(201,168,76,0.07); }
+        .stat-card { background: var(--ink-mid); border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+        .stat-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%); pointer-events: none; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: #0d1117; font-family: 'Fraunces', serif; font-weight: 700; letter-spacing: 0.03em;
+            transition: all 0.2s ease; box-shadow: 0 0 24px rgba(201,168,76,0.3);
+        }
+        .btn-primary:hover { background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-soft) 100%); box-shadow: 0 0 44px rgba(201,168,76,0.5); transform: translateY(-1px); }
+        .btn-outline { border: 1px solid var(--gold-border); color: var(--text-bright); font-family: 'Fraunces', serif; font-weight: 600; transition: all 0.2s ease; }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+        .section-label { font-family: 'Fraunces', serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+        .tag-mono { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 0.08em; background: var(--gold-dim); border: 1px solid var(--gold-border); color: var(--gold-light); padding: 4px 10px; border-radius: 2px; }
+        .big-num { font-family: 'Fraunces', serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1; }
+        .hero-h1 { font-size: clamp(2.6rem, 6.5vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
+
+        /* Blur text reveal animation */
+        @keyframes blur-reveal {
+            0% { filter: blur(10px); opacity: 0; }
+            100% { filter: blur(0px); opacity: 1; }
+        }
+        .blur-letter {
+            display: inline-block;
+            color: rgba(201,168,76,0.45);
+            opacity: 0;
+            filter: blur(10px);
+            animation: blur-reveal 0.5s ease forwards;
+            will-change: filter, opacity;
+        }
+
+        /* Animated gold flowing text */
+        @keyframes gold-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .animated-gold-text {
+            background: linear-gradient(90deg, #c9a84c, #f0d98a, #ffd700, #e2c06a, #c9a84c, #f0d98a, #ffd700, #c9a84c);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gold-flow 3s linear infinite;
+            font-weight: 700;
+        }
+
+        /* Hero breathing pulse */
+        @keyframes breathe { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        .hero-glow { animation: breathe 6s ease-in-out infinite; }
+
+        /* Fade-up on scroll */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.25s; }
+        .reveal-d3 { transition-delay: 0.4s; }
+
+        /* Integration marquee */
+        .integration-pill { display: inline-flex; align-items: center; gap: 10px; background: none; border: none; padding: 8px 12px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
+        .integration-pill:hover { transform: scale(1.12); }
+        .integration-pill img { height: 40px; width: 40px; object-fit: contain; border-radius: 8px; mix-blend-mode: multiply; }
+        .pill-label { font-size: 14px; font-weight: 600; color: var(--text-body); }
+        .marquee-track { display: flex; gap: 16px; width: max-content; will-change: transform; }
+        .marquee-wrap { overflow: hidden; mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); }
+
+        /* Timeline */
+        .timeline-line { position: relative; display: flex; justify-content: space-between; align-items: flex-start; }
+        .timeline-line::before { content: ''; position: absolute; top: 18px; left: 24px; right: 24px; height: 1px; background: linear-gradient(to right, var(--gold-border), var(--gold), var(--gold-border)); }
+        .timeline-node { display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; z-index: 1; cursor: pointer; flex: 1; }
+        .timeline-circle { width: 36px; height: 36px; border-radius: 50%; background: var(--gold-dim); border: 2px solid var(--gold-border); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; font-weight: 700; color: var(--gold); transition: all 0.3s ease; }
+        .timeline-node:hover .timeline-circle { background: var(--gold); color: #0d1117; border-color: var(--gold); box-shadow: 0 0 20px rgba(201,168,76,0.4); }
+        .timeline-label { font-size: 11px; color: var(--text-muted); font-weight: 500; text-align: center; transition: color 0.3s ease; }
+        .timeline-node:hover .timeline-label { color: var(--gold-light); }
+        .timeline-tooltip { position: absolute; top: 72px; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--ink-raised); border: 1px solid var(--gold-border); border-radius: 4px; padding: 14px 18px; font-size: 13px; color: var(--text-body); line-height: 1.5; width: 260px; text-align: center; opacity: 0; pointer-events: none; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        .timeline-tooltip::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 8px; height: 8px; background: var(--ink-raised); border-top: 1px solid var(--gold-border); border-left: 1px solid var(--gold-border); }
+        .timeline-node:hover .timeline-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+
+        /* Mobile timeline */
+        @media (max-width: 768px) {
+            .timeline-line { flex-direction: column; gap: 0; }
+            .timeline-line::before { display: none; }
+            .timeline-node { flex-direction: row; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); width: 100%; }
+            .timeline-tooltip { position: static; transform: none; opacity: 0; max-height: 0; overflow: hidden; padding: 0 18px; width: 100%; transition: all 0.3s ease, opacity 0.3s ease; }
+            .timeline-node.active .timeline-tooltip { opacity: 1; max-height: 120px; padding: 12px 18px; margin-top: 8px; }
+            .timeline-node:hover .timeline-tooltip { opacity: 0; transform: none; }
+            .timeline-node.active .timeline-tooltip { opacity: 1; transform: none; }
+        }
+
+        /* Dashboard mockup blur */
+        .blur-reveal { filter: blur(6px); transition: filter 0.6s ease; }
+        .blur-reveal:hover { filter: blur(3px); }
+
+        /* Service card */
+        .service-card { background: var(--ink-raised); border: 1px solid var(--border); border-radius: 4px; padding: 28px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), var(--gold-soft)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover { border-color: rgba(201,168,76,0.25); box-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 0 20px rgba(201,168,76,0.05); transform: translateY(-2px); }
+        .service-card .reveal-line { opacity: 0; transform: translateY(6px); transition: all 0.3s ease; }
+        .service-card:hover .reveal-line { opacity: 1; transform: translateY(0); }
+        .service-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+        /* Locked tool card */
+        .card-locked { opacity: 0.4; position: relative; }
+        .card-locked::after { content: ''; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(250,248,242,0.6); border-radius: 4px; }
+
+        /* Pricing featured */
+        .pricing-featured { background: linear-gradient(180deg, rgba(201,168,76,0.09) 0%, rgba(201,168,76,0.02) 100%); border: 1px solid rgba(201,168,76,0.45); box-shadow: 0 0 60px rgba(201,168,76,0.10), inset 0 1px 0 rgba(201,168,76,0.25); }
+
+        /* Pricing toggle */
+        .pricing-features { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .pricing-features.open { max-height: 600px; }
+        .pricing-toggle { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gold); font-weight: 600; font-family: 'Fraunces', serif; letter-spacing: 0.05em; }
+        .pricing-toggle svg { transition: transform 0.3s ease; }
+        .pricing-toggle.open svg { transform: rotate(180deg); }
+
+        /* Pain point cards — border glow */
+        @property --glow-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @keyframes border-glow-spin {
+            to { --glow-angle: 360deg; }
+        }
+        .pain-card { background: var(--ink-raised); border: none; border-radius: 6px; padding: 20px 24px; white-space: nowrap; font-size: 14px; color: var(--text-body); font-style: italic; position: relative; isolation: isolate; }
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 8px;
+            background: conic-gradient(from var(--glow-angle, 0deg), transparent 0%, rgba(201,168,76,0.7) 10%, transparent 20%);
+            z-index: -2;
+            animation: border-glow-spin 3s linear infinite;
+        }
+        .pain-card::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            border-radius: 5px;
+            background: var(--ink-raised);
+            z-index: -1;
+        }
+
+        /* Form */
+        input, select, textarea { background: rgba(0,0,0,0.03); border: 1px solid rgba(201,168,76,0.18); border-radius: 4px; padding: 12px 16px; width: 100%; color: var(--text-bright); font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+        input::placeholder, textarea::placeholder { color: var(--text-muted); }
+        select option { background: var(--ink-mid); }
+
+        /* Footer */
+        footer { background: var(--ink-mid); border-top: 1px solid var(--gold-border); }
+
+        /* Theme toggle button */
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ink); }
+        ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.35); border-radius: 3px; }
+
+        /* Check icon */
+        .check-item { display: flex; align-items: flex-start; gap: 12px; }
+        .check-icon { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+
+
+        /* Golden dots background */
+        .galaxy-section { position: relative; }
+        .golden-dots-wrap {
+            position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+        }
+        .golden-dots-wrap::before,
+        .golden-dots-wrap::after {
+            content: ''; position: absolute; inset: 0;
+        }
+        .golden-dots-wrap::before {
+            background-image:
+                radial-gradient(2px 2px at 8% 12%, rgba(201,168,76,0.5) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 22% 38%, rgba(201,168,76,0.35) 50%, transparent 50%),
+                radial-gradient(2.5px 2.5px at 38% 8%, rgba(201,168,76,0.55) 50%, transparent 50%),
+                radial-gradient(1px 1px at 52% 52%, rgba(201,168,76,0.25) 50%, transparent 50%),
+                radial-gradient(2px 2px at 68% 22%, rgba(201,168,76,0.45) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 82% 62%, rgba(201,168,76,0.3) 50%, transparent 50%),
+                radial-gradient(2.5px 2.5px at 12% 72%, rgba(201,168,76,0.5) 50%, transparent 50%),
+                radial-gradient(1px 1px at 32% 82%, rgba(201,168,76,0.25) 50%, transparent 50%),
+                radial-gradient(2px 2px at 58% 78%, rgba(201,168,76,0.4) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 78% 42%, rgba(201,168,76,0.35) 50%, transparent 50%),
+                radial-gradient(2px 2px at 90% 18%, rgba(201,168,76,0.45) 50%, transparent 50%),
+                radial-gradient(1px 1px at 45% 32%, rgba(201,168,76,0.2) 50%, transparent 50%),
+                radial-gradient(2.5px 2.5px at 3% 48%, rgba(201,168,76,0.5) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 72% 88%, rgba(201,168,76,0.3) 50%, transparent 50%),
+                radial-gradient(2px 2px at 28% 58%, rgba(201,168,76,0.4) 50%, transparent 50%),
+                radial-gradient(1px 1px at 93% 82%, rgba(201,168,76,0.2) 50%, transparent 50%);
+        }
+        .golden-dots-wrap::after {
+            background-image:
+                radial-gradient(1.5px 1.5px at 16% 20%, rgba(201,168,76,0.3) 50%, transparent 50%),
+                radial-gradient(2px 2px at 40% 65%, rgba(201,168,76,0.4) 50%, transparent 50%),
+                radial-gradient(1px 1px at 61% 10%, rgba(201,168,76,0.3) 50%, transparent 50%),
+                radial-gradient(2.5px 2.5px at 86% 50%, rgba(201,168,76,0.45) 50%, transparent 50%),
+                radial-gradient(1.5px 1.5px at 5% 90%, rgba(201,168,76,0.3) 50%, transparent 50%),
+                radial-gradient(2px 2px at 50% 40%, rgba(201,168,76,0.4) 50%, transparent 50%),
+                radial-gradient(1px 1px at 31% 15%, rgba(201,168,76,0.25) 50%, transparent 50%),
+                radial-gradient(2px 2px at 76% 70%, rgba(201,168,76,0.4) 50%, transparent 50%);
+        }
+        .galaxy-section > *:not(.golden-dots-wrap) { position: relative; z-index: 1; }
+
+        /* FAQ accordion */
+        .faq-item { overflow: hidden; }
+        .faq-toggle {
+            width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: 18px 0; background: none; border: none; cursor: pointer; text-align: left;
+        }
+        .faq-q { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: #f0ead6; line-height: 1.4; }
+        .faq-arrow { color: #c9a84c; flex-shrink: 0; transition: transform 0.3s ease; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 0;
+        }
+        .faq-answer p { font-size: 14px; line-height: 1.7; color: #9da8b8; padding-bottom: 18px; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-item.open .faq-answer { max-height: 200px; }
+    </style>
+</head>
+<body class="mesh-bg">
+
+<!-- ═══ NAV ═══ -->
+<nav class="fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="flex justify-between items-center h-[72px]">
+            <div class="flex items-center gap-3 relative">
+                <span class="absolute top-1/2 -translate-y-1/2 font-bold uppercase tracking-tight pointer-events-none select-none hidden sm:block" style="font-family:'Fraunces',serif; font-size:2.8rem; white-space:nowrap; left:-18px; letter-spacing:0.02em;"><span class="blur-letter" style="animation-delay:0s">A</span><span class="blur-letter" style="animation-delay:0.2s">C</span><span class="blur-letter" style="animation-delay:0.4s">C</span><span class="blur-letter" style="animation-delay:0.6s">O</span><span class="blur-letter" style="animation-delay:0.8s">U</span><span class="blur-letter" style="animation-delay:1.0s">N</span><span class="blur-letter" style="animation-delay:1.2s">T</span><span class="blur-letter" style="animation-delay:1.4s">I</span><span class="blur-letter" style="animation-delay:1.6s">N</span><span class="blur-letter" style="animation-delay:1.8s">G</span></span>
+                <img src="VCPility_logo.png" alt="VCPility" style="height:32px;width:auto;filter:invert(1); position:relative; z-index:1;">
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#services" class="text-sm font-medium hover:text-[var(--gold-light)] transition-colors" style="color:var(--text-muted)">Services</a>
+                <a href="#pricing" class="text-sm font-medium hover:text-[var(--gold-light)] transition-colors" style="color:var(--text-muted)">Pricing</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#demo" class="btn-primary px-5 py-2.5 rounded-[3px] text-sm hidden sm:inline-block">Book a Demo</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══ HERO — "The Provocation" ═══ -->
+<div class="relative overflow-hidden">
+    <!-- Full-width background image -->
+    <div class="absolute inset-0 pointer-events-none" style="z-index:1">
+        <img
+            src="https://www.superhero.com.au/wp-content/uploads/2024/01/24-03_blog_news_mosttradedASX_hero@2x-1024x796.jpg"
+            alt=""
+            style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+                opacity: 0.7;
+                user-select: none;
+            "
+        >
+    </div>
+    <!-- Gradient scrim for text readability -->
+    <div class="absolute inset-0 pointer-events-none" style="z-index:2;
+        background: linear-gradient(180deg,
+            rgba(13,17,23,0.52) 0%,
+            rgba(13,17,23,0.38) 35%,
+            rgba(13,17,23,0.30) 60%,
+            rgba(13,17,23,0.40) 80%,
+            rgba(13,17,23,0.50) 100%
+        );
+    "></div>
+    <section class="pt-40 pb-28 lg:pt-52 lg:pb-36 px-6 lg:px-10 max-w-7xl mx-auto relative" style="z-index:3">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="hero-h1 reveal reveal-d1" style="color:#f5f0e0; text-shadow: 0 2px 16px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25);">
+                What's the real cost of<br>
+                the client who<br>
+                <span class="gradient-text">never called back?</span>
+            </h1>
+            <div class="reveal reveal-d2 mt-12 flex justify-center">
+                <a href="#demo" class="btn-primary px-10 py-4 rounded-[3px] text-base inline-block">Find out →</a>
+            </div>
+            <p class="reveal reveal-d3 mt-6 text-base tracking-wide font-medium" style="color:#e2c06a; text-shadow: 0 1px 6px rgba(0,0,0,0.4);">No lock-in contracts. Operational within days. Fixed monthly pricing.</p>
+        </div>
+        <div class="absolute top-24 left-10 w-72 h-72 rounded-full hero-glow pointer-events-none" style="background:rgba(201,168,76,0.12); filter:blur(80px)"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 rounded-full hero-glow pointer-events-none" style="background:rgba(201,168,76,0.10); filter:blur(80px); animation-delay:3s"></div>
+    </section>
+</div>
+
+<hr class="hr-grad">
+
+<!-- ═══ STATS — "The Evidence Wall" ═══ -->
+<section class="py-20 px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="stat-card rounded-[4px] p-8 text-center reveal">
+                <div class="big-num count-up" data-target="14" data-suffix=" days" style="color:var(--text-bright)">0</div>
+                <div class="text-xs font-semibold tracking-widest uppercase mt-2" style="color:var(--text-muted)">Debtor Days</div>
+                <div class="mt-4 h-1 w-10 mx-auto rounded-full" style="background:rgba(13,17,23,0.1)"></div>
+            </div>
+            <div class="stat-card rounded-[4px] p-8 text-center reveal reveal-d1">
+                <div class="big-num count-up" data-target="3.1" data-suffix="×" style="color:var(--gold)">0</div>
+                <div class="text-xs font-semibold tracking-widest uppercase mt-2" style="color:var(--text-muted)">Revenue Per Client</div>
+                <div class="mt-4 h-1 w-14 mx-auto rounded-full" style="background:rgba(201,168,76,0.4)"></div>
+            </div>
+            <div class="stat-card rounded-[4px] p-8 text-center reveal reveal-d2">
+                <div class="big-num count-up" data-target="100" data-suffix="%" style="color:#2eb8a0">0</div>
+                <div class="text-xs font-semibold tracking-widest uppercase mt-2" style="color:var(--text-muted)">On-Time BAS & Payroll</div>
+                <div class="mt-4 h-1 w-8 mx-auto rounded-full" style="background:rgba(46,184,160,0.4)"></div>
+            </div>
+            <div class="stat-card rounded-[4px] p-8 text-center reveal reveal-d3">
+                <div class="big-num count-up" data-target="6.3" data-suffix=" months" style="color:#a89fd4">0</div>
+                <div class="text-xs font-semibold tracking-widest uppercase mt-2" style="color:var(--text-muted)">Cash Runway</div>
+                <div class="mt-4 h-1 w-12 mx-auto rounded-full" style="background:rgba(129,140,248,0.4)"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ THE PROBLEM — "The Mirror" ═══ -->
+<section id="problem" class="py-28 px-6 lg:px-10" style="background:#0d1117;">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <p class="section-label mb-4" style="color:#c9a84c;">The Gap</p>
+                <h2 class="syne text-3xl lg:text-4xl font-bold leading-tight mb-6" style="text-align:justify; text-align-last:left; color:#f0ead6;">
+                    Every year, great accounting firms lose clients they never knew they had.
+                </h2>
+                <p class="text-lg leading-relaxed mb-8" style="color:#9da8b8;">
+                    It's not your technical work.<br>
+                    It's everything surrounding it.
+                </p>
+                <p class="text-sm leading-relaxed" style="color:#b0bac9; text-align:justify; line-height:1.8;">
+                    Reporting linked to <span class="animated-gold-text" style="font-weight:700;">Bloomberg</span> highlights that audit‑quality issues seen globally are mirrored in the Australian context, with local regulators and market observers noting high audit‑deficiency rates and recurring independence concerns at large firms. Recent data from international inspections — showing deficiencies in roughly <strong style="color:#f0ead6;">40%</strong> of large public‑company audits and around <strong style="color:#f0ead6;">70%</strong> of broker‑dealer audits — reflect structural weaknesses that also apply to the way major Australian accounting firms conduct and oversee statutory audits.
+                </p>
+            </div>
+            <!-- Technical analysis image -->
+            <div class="reveal reveal-d2">
+                <div class="rounded-lg overflow-hidden" style="border:1px solid rgba(201,168,76,0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(201,168,76,0.05);">
+                    <img src="https://thefxmentor.com/wp-content/uploads/2023/06/tecnhical-analysis-forex-768x432.jpg" alt="Financial analysis" style="width:100%; display:block; object-fit:cover;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Pain point scroll -->
+        <div class="mt-16 overflow-x-auto pb-4 -mx-6 px-6 reveal">
+            <div class="flex gap-4" style="min-width:max-content">
+                <div class="pain-card">"Enquiries answered hours too late."</div>
+                <div class="pain-card">"Deadlines that creep up unannounced."</div>
+                <div class="pain-card">"Advisory conversations deferred indefinitely."</div>
+                <div class="pain-card">"A digital presence that doesn't match your expertise."</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ LIFECYCLE — "The Sequence" ═══ -->
+<section id="lifecycle" class="py-28 px-6 lg:px-10 galaxy-section">
+    <div class="golden-dots-wrap" id="golden-dots-lifecycle"></div>
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <p class="section-label mb-4">The Complete Practice Lifecycle</p>
+            <h2 class="syne text-3xl lg:text-4xl font-bold mb-4">Eight stages. Every one accounted for.</h2>
+            <p class="text-sm" style="color:var(--text-muted)">Hover to explore each stage.</p>
+        </div>
+
+        <div class="timeline-line reveal" id="timeline">
+            <div class="timeline-node" data-stage="0">
+                <div class="timeline-circle">1</div>
+                <span class="timeline-label">Visibility</span>
+                <div class="timeline-tooltip">A prospect who can't find your practice online doesn't know it exists. We make sure they find you — and like what they see.</div>
+            </div>
+            <div class="timeline-node" data-stage="1">
+                <div class="timeline-circle">2</div>
+                <span class="timeline-label">Enquiries</span>
+                <div class="timeline-tooltip">Structured intake ensures every enquiry you receive is worth pursuing. The wrong ones never reach your desk.</div>
+            </div>
+            <div class="timeline-node" data-stage="2">
+                <div class="timeline-circle">3</div>
+                <span class="timeline-label">Response</span>
+                <div class="timeline-tooltip">Every enquiry acknowledged within minutes. Not the next business day. Not after the meeting finishes.</div>
+            </div>
+            <div class="timeline-node" data-stage="3">
+                <div class="timeline-circle">4</div>
+                <span class="timeline-label">Record</span>
+                <div class="timeline-tooltip">One source of truth for every client. No inbox archaeology. No reconstructing context from memory.</div>
+            </div>
+            <div class="timeline-node" data-stage="4">
+                <div class="timeline-circle">5</div>
+                <span class="timeline-label">Follow-up</span>
+                <div class="timeline-tooltip">Systematic follow-through replaces individual memory. Engagements don't stall. Clients don't feel forgotten.</div>
+            </div>
+            <div class="timeline-node" data-stage="5">
+                <div class="timeline-circle">6</div>
+                <span class="timeline-label">Compliance</span>
+                <div class="timeline-tooltip">BAS, IAS, FBT, income tax — clients notified at precisely the right intervals. By the deadline, you have what you need.</div>
+            </div>
+            <div class="timeline-node" data-stage="6">
+                <div class="timeline-circle">7</div>
+                <span class="timeline-label">Advisory</span>
+                <div class="timeline-tooltip">Your highest-value conversations stop being deferred. Restructuring, succession, SMSF — tracked and prompted.</div>
+            </div>
+            <div class="timeline-node" data-stage="7">
+                <div class="timeline-circle">8</div>
+                <span class="timeline-label">Retention</span>
+                <div class="timeline-tooltip">Clients who feel looked after don't look for alternatives. Systematic, value-adding communication all year round.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ INTEGRATIONS — "The Ecosystem" ═══ -->
+<section id="integrations" class="py-20 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-10 reveal">
+            <p class="section-label" style="font-size:15px; letter-spacing:0.18em;">Connects to everything you already use</p>
+        </div>
+        <div class="marquee-wrap mb-4 reveal">
+            <div class="marquee-track">
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=xero.com&sz=128" alt="Xero"><span class="pill-label">Xero</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=myob.com&sz=128" alt="MYOB"><span class="pill-label">MYOB</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" alt="Karbon"><span class="pill-label">Karbon</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128" alt="QuickBooks"><span class="pill-label">QuickBooks</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=taxdome.com&sz=128" alt="TaxDome"><span class="pill-label">TaxDome</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=ignitionapp.com&sz=128" alt="Ignition"><span class="pill-label">Ignition</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=sage.com&sz=128" alt="Sage"><span class="pill-label">Sage</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=128" alt="HubSpot"><span class="pill-label">HubSpot</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=slack.com&sz=128" alt="Slack"><span class="pill-label">Slack</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=128" alt="Stripe"><span class="pill-label">Stripe</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=docusign.com&sz=128" alt="DocuSign"><span class="pill-label">DocuSign</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=128" alt="Adobe Sign"><span class="pill-label">Adobe</span></span>
+                <!-- Duplicate set for seamless loop -->
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=xero.com&sz=128" alt="Xero"><span class="pill-label">Xero</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=myob.com&sz=128" alt="MYOB"><span class="pill-label">MYOB</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=karbonhq.com&sz=128" alt="Karbon"><span class="pill-label">Karbon</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128" alt="QuickBooks"><span class="pill-label">QuickBooks</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=taxdome.com&sz=128" alt="TaxDome"><span class="pill-label">TaxDome</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=ignitionapp.com&sz=128" alt="Ignition"><span class="pill-label">Ignition</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=sage.com&sz=128" alt="Sage"><span class="pill-label">Sage</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=128" alt="HubSpot"><span class="pill-label">HubSpot</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=slack.com&sz=128" alt="Slack"><span class="pill-label">Slack</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=stripe.com&sz=128" alt="Stripe"><span class="pill-label">Stripe</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=docusign.com&sz=128" alt="DocuSign"><span class="pill-label">DocuSign</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=128" alt="Adobe Sign"><span class="pill-label">Adobe</span></span>
+            </div>
+        </div>
+        <div class="marquee-wrap reveal">
+            <div class="marquee-track" data-reverse="true" data-speed="0.4" data-copies="3">
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft 365"><span class="pill-label">Microsoft</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=128" alt="Google Workspace"><span class="pill-label">Google</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=gocardless.com&sz=128" alt="GoCardless"><span class="pill-label">GoCardless</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=128" alt="Zapier"><span class="pill-label">Zapier</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=128" alt="Make"><span class="pill-label">Make</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn"><span class="pill-label">LinkedIn</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=128" alt="Meta"><span class="pill-label">Meta</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=analytics.google.com&sz=128" alt="Google Analytics"><span class="pill-label">Analytics</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=fyidocs.com&sz=128" alt="FYI Docs"><span class="pill-label">FYI Docs</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=changegps.com.au&sz=128" alt="ChangeGPS"><span class="pill-label">ChangeGPS</span></span>
+                <!-- Duplicate set 1 for seamless loop -->
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft 365"><span class="pill-label">Microsoft</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=128" alt="Google Workspace"><span class="pill-label">Google</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=gocardless.com&sz=128" alt="GoCardless"><span class="pill-label">GoCardless</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=128" alt="Zapier"><span class="pill-label">Zapier</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=128" alt="Make"><span class="pill-label">Make</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn"><span class="pill-label">LinkedIn</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=128" alt="Meta"><span class="pill-label">Meta</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=analytics.google.com&sz=128" alt="Google Analytics"><span class="pill-label">Analytics</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=fyidocs.com&sz=128" alt="FYI Docs"><span class="pill-label">FYI Docs</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=changegps.com.au&sz=128" alt="ChangeGPS"><span class="pill-label">ChangeGPS</span></span>
+                <!-- Duplicate set 2 for extra coverage -->
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft 365"><span class="pill-label">Microsoft</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=128" alt="Google Workspace"><span class="pill-label">Google</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=gocardless.com&sz=128" alt="GoCardless"><span class="pill-label">GoCardless</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=128" alt="Zapier"><span class="pill-label">Zapier</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=128" alt="Make"><span class="pill-label">Make</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn"><span class="pill-label">LinkedIn</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=128" alt="Meta"><span class="pill-label">Meta</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=analytics.google.com&sz=128" alt="Google Analytics"><span class="pill-label">Analytics</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=fyidocs.com&sz=128" alt="FYI Docs"><span class="pill-label">FYI Docs</span></span>
+                <span class="integration-pill"><img src="https://www.google.com/s2/favicons?domain=changegps.com.au&sz=128" alt="ChangeGPS"><span class="pill-label">ChangeGPS</span></span>
+            </div>
+        </div>
+        <p class="text-center text-sm mt-8 reveal" style="color:var(--text-muted)">Don't see yours? <a href="#demo" class="hover:text-[var(--gold-light)] underline underline-offset-2" style="color:var(--gold)">Ask us.</a></p>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ SERVICES — "The Arsenal" (GSAP Scroll-Animated) ═══ -->
+<section id="services-section" class="relative overflow-hidden" style="background:#0d1117;">
+
+    <!-- Section header with scroll-animated text -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-28 pb-16">
+        <p class="gsap-label section-label mb-6" style="color:#c9a84c;">Your Growth Function</p>
+        <h2 class="gsap-heading syne font-bold leading-[1.05]" style="color:#f0ead6; font-size:clamp(2.5rem,6vw,4.5rem);">
+            Everything your<br>practice needs.
+        </h2>
+        <div class="gsap-rule mt-8" style="height:1px; background:linear-gradient(to right, rgba(201,168,76,0.5), transparent); width:0;"></div>
+    </div>
+    <!-- Service panels — each animates independently on scroll -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pb-28 space-y-20">
+
+        <!-- Panel 1: SEO & AEO -->
+        <div class="gsap-panel grid lg:grid-cols-[1fr_1.2fr] gap-12 items-center" style="opacity:0; transform:translateY(60px);">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.25);">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#c9a84c" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"/></svg>
+                    </div>
+                    <span class="text-xs font-bold tracking-widest uppercase" style="color:#c9a84c;">01</span>
+                </div>
+                <h3 class="syne text-2xl lg:text-3xl font-bold mb-3" style="color:#f0ead6;">SEO &amp; AEO</h3>
+                <p class="text-base leading-relaxed" style="color:#9da8b8;">Visibility Where It Counts — We manage both traditional search engine optimisation and Answer Engine Optimisation to ensure your practice is positioned across Google and AI-powered platforms.</p>
+            </div>
+            <div class="relative h-64 lg:h-80 rounded-xl overflow-hidden" style="border:1px solid rgba(201,168,76,0.1);">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+                <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(13,17,23,0.6), rgba(201,168,76,0.08));"></div>
+            </div>
+        </div>
+
+        <div class="gsap-divider" style="height:1px; background:linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent); width:0;"></div>
+
+        <!-- Panel 2: Social Media -->
+        <div class="gsap-panel grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center" style="opacity:0; transform:translateY(60px);">
+            <div class="relative h-64 lg:h-80 rounded-xl overflow-hidden order-2 lg:order-1" style="border:1px solid rgba(46,184,160,0.1);">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+                <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(13,17,23,0.6), rgba(46,184,160,0.08));"></div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:rgba(46,184,160,0.15); border:1px solid rgba(46,184,160,0.25);">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#2eb8a0" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold tracking-widest uppercase" style="color:#2eb8a0;">02</span>
+                </div>
+                <h3 class="syne text-2xl lg:text-3xl font-bold mb-3" style="color:#f0ead6;">Social Media</h3>
+                <p class="text-base leading-relaxed" style="color:#9da8b8;">Managed on Your Behalf — Content creation, scheduling, and publication under your firm's name. You review and approve — we handle the execution.</p>
+            </div>
+        </div>
+
+        <div class="gsap-divider" style="height:1px; background:linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent); width:0;"></div>
+
+        <!-- Panel 3: Lead Generation -->
+        <div class="gsap-panel grid lg:grid-cols-[1fr_1.2fr] gap-12 items-center" style="opacity:0; transform:translateY(60px);">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:rgba(46,184,160,0.15); border:1px solid rgba(46,184,160,0.25);">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#2eb8a0" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold tracking-widest uppercase" style="color:#2eb8a0;">03</span>
+                </div>
+                <h3 class="syne text-2xl lg:text-3xl font-bold mb-3" style="color:#f0ead6;">Lead Generation</h3>
+                <p class="text-base leading-relaxed" style="color:#9da8b8;">Qualified, Not Just Volume — Targeted campaigns that place your firm in front of the right local businesses. Every enquiry followed up automatically.</p>
+            </div>
+            <div class="relative h-64 lg:h-80 rounded-xl overflow-hidden" style="border:1px solid rgba(46,184,160,0.1);">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+                <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(13,17,23,0.6), rgba(46,184,160,0.08));"></div>
+            </div>
+        </div>
+
+        <div class="gsap-divider" style="height:1px; background:linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent); width:0;"></div>
+
+        <!-- Panel 4: Custom AI -->
+        <div class="gsap-panel grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center" style="opacity:0; transform:translateY(60px);">
+            <div class="relative h-64 lg:h-80 rounded-xl overflow-hidden order-2 lg:order-1" style="border:1px solid rgba(251,191,36,0.1);">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+                <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(13,17,23,0.6), rgba(251,191,36,0.08));"></div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.25);">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#fbbf24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold tracking-widest uppercase" style="color:#fbbf24;">04</span>
+                </div>
+                <h3 class="syne text-2xl lg:text-3xl font-bold mb-3" style="color:#f0ead6;">Custom AI Solutions</h3>
+                <p class="text-base leading-relaxed" style="color:#9da8b8;">Built for Your Practice — Custom AI workflows tailored to your firm's engagement types, client mix, and processes. Infrastructure engineered for you.</p>
+            </div>
+        </div>
+
+        <div class="gsap-divider" style="height:1px; background:linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent); width:0;"></div>
+
+        <!-- Panel 5: Client Communications -->
+        <div class="gsap-panel grid lg:grid-cols-[1fr_1.2fr] gap-12 items-center" style="opacity:0; transform:translateY(60px);">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.25);">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#f87171" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold tracking-widest uppercase" style="color:#f87171;">05</span>
+                </div>
+                <h3 class="syne text-2xl lg:text-3xl font-bold mb-3" style="color:#f0ead6;">Client Communications</h3>
+                <p class="text-base leading-relaxed" style="color:#9da8b8;">Professional, Automated — Deadline notices, onboarding sequences, follow-ups — dispatched automatically under your firm's name and branding.</p>
+            </div>
+            <div class="relative h-64 lg:h-80 rounded-xl overflow-hidden" style="border:1px solid rgba(239,68,68,0.1);">
+                <img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+                <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(13,17,23,0.6), rgba(239,68,68,0.08));"></div>
+            </div>
+        </div>
+
+        <div class="gsap-divider" style="height:1px; background:linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent); width:0;"></div>
+
+        <!-- Panel 6: Practice Dashboard -->
+        <div class="gsap-panel grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center" style="opacity:0; transform:translateY(60px);">
+            <div class="relative h-64 lg:h-80 rounded-xl overflow-hidden order-2 lg:order-1" style="border:1px solid rgba(123,127,196,0.1);">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+                <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(13,17,23,0.6), rgba(123,127,196,0.08));"></div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:rgba(123,127,196,0.15); border:1px solid rgba(123,127,196,0.25);">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#7b7fc4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold tracking-widest uppercase" style="color:#7b7fc4;">06</span>
+                </div>
+                <h3 class="syne text-2xl lg:text-3xl font-bold mb-3" style="color:#f0ead6;">Practice Dashboard</h3>
+                <p class="text-base leading-relaxed" style="color:#9da8b8;">Complete Operational View — Engagements, lodgement obligations, workload, enquiry pipeline, and advisory opportunities in a single real-time dashboard.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ GROWTH PARTNER — "The Promise" ═══ -->
+<section class="py-28 px-6 lg:px-10">
+    <div class="max-w-4xl mx-auto">
+        <div class="card rounded-[4px] p-12 lg:p-16 relative overflow-hidden text-center reveal">
+            <div class="absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl pointer-events-none" style="background:rgba(201,168,76,0.05)"></div>
+            <div class="absolute -bottom-20 -right-20 w-72 h-72 rounded-full blur-3xl pointer-events-none" style="background:rgba(201,168,76,0.05)"></div>
+            <div class="relative">
+                <p class="section-label mb-5">A Different Kind of Partnership</p>
+                <h2 class="syne text-3xl lg:text-4xl font-bold mb-6">One team. One fee. One purpose.</h2>
+                <p class="text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style="color:var(--text-body)">
+                    Specialists who work exclusively with Australian accounting practices.<br>
+                    Not a generalist agency. Not a freelancer. Not another subscription.
+                </p>
+                <div class="flex flex-wrap justify-center gap-3 mb-10">
+                    <span class="tag-mono">Accounting-native</span>
+                    <span class="tag-mono">Custom AI</span>
+                    <span class="tag-mono">Fixed pricing</span>
+                </div>
+                <a href="#demo" class="btn-primary px-10 py-4 rounded-[3px] text-base inline-block">Meet your growth partner →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ AI AGENTS — "The Intelligence" ═══ -->
+<section id="services" class="relative overflow-hidden" style="background:#0d1117;">
+    <!-- Subtle grid pattern overlay -->
+    <div class="absolute inset-0 pointer-events-none" style="opacity:0.04; background-image: linear-gradient(rgba(201,168,76,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <!-- Glow accent -->
+    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left: Agent Studio UI mockup -->
+            <div class="reveal">
+                <div class="rounded-lg overflow-hidden" style="background:#161c27; border:1px solid rgba(201,168,76,0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(201,168,76,0.05);">
+                    <!-- Title bar -->
+                    <div class="flex items-center gap-3 px-5 py-3" style="background:#1c2333; border-bottom:1px solid rgba(201,168,76,0.1);">
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></div>
+                            <div class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></div>
+                            <div class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></div>
+                        </div>
+                        <span class="text-xs font-medium" style="color:#9da8b8;">VCPility Agent Studio</span>
+                    </div>
+                    <!-- Sidebar + content -->
+                    <div class="flex">
+                        <!-- Mini sidebar -->
+                        <div class="hidden sm:flex flex-col gap-4 p-4 w-44" style="border-right:1px solid rgba(201,168,76,0.08);">
+                            <div class="flex items-center gap-2 px-2 py-1.5 rounded" style="background:rgba(201,168,76,0.1);">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#c9a84c" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                <span class="text-[11px] font-medium" style="color:#c9a84c;">AI Agents</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#5a677a" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                <span class="text-[11px]" style="color:#5a677a;">Conversations</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#5a677a" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                <span class="text-[11px]" style="color:#5a677a;">Analytics</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#5a677a" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                                <span class="text-[11px]" style="color:#5a677a;">Automation</span>
+                            </div>
+                        </div>
+                        <!-- Agent cards -->
+                        <div class="flex-1 p-4 space-y-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-semibold" style="color:#f0ead6;">Active Agents</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold" style="background:rgba(46,184,160,0.15); color:#2eb8a0;">3 live</span>
+                            </div>
+                            <!-- Agent 1 -->
+                            <div class="flex items-center gap-3 p-3 rounded" style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.12);">
+                                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(46,184,160,0.15);">
+                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#2eb8a0" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-xs font-semibold" style="color:#f0ead6;">Inbound Call Agent</div>
+                                    <div class="text-[10px]" style="color:#5a677a;">Answers, qualifies & books — 24/7</div>
+                                </div>
+                                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#2eb8a0; box-shadow:0 0 6px rgba(46,184,160,0.6);"></div>
+                            </div>
+                            <!-- Agent 2 -->
+                            <div class="flex items-center gap-3 p-3 rounded" style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.12);">
+                                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.15);">
+                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#c9a84c" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-3 3v-3z"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-xs font-semibold" style="color:#f0ead6;">Follow-up Agent</div>
+                                    <div class="text-[10px]" style="color:#5a677a;">Chases invoices & re-engages leads</div>
+                                </div>
+                                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#2eb8a0; box-shadow:0 0 6px rgba(46,184,160,0.6);"></div>
+                            </div>
+                            <!-- Agent 3 -->
+                            <div class="flex items-center gap-3 p-3 rounded" style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.12);">
+                                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(123,127,196,0.15);">
+                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#7b7fc4" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-xs font-semibold" style="color:#f0ead6;">Compliance Agent</div>
+                                    <div class="text-[10px]" style="color:#5a677a;">Monitors deadlines & flags risks</div>
+                                </div>
+                                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#2eb8a0; box-shadow:0 0 6px rgba(46,184,160,0.6);"></div>
+                            </div>
+                            <!-- Stats row -->
+                            <div class="grid grid-cols-3 gap-2 pt-2">
+                                <div class="text-center p-2 rounded" style="background:rgba(201,168,76,0.05);">
+                                    <div class="text-sm font-bold" style="color:#c9a84c;">847</div>
+                                    <div class="text-[9px]" style="color:#5a677a;">Calls handled</div>
+                                </div>
+                                <div class="text-center p-2 rounded" style="background:rgba(46,184,160,0.05);">
+                                    <div class="text-sm font-bold" style="color:#2eb8a0;">96%</div>
+                                    <div class="text-[9px]" style="color:#5a677a;">Resolution rate</div>
+                                </div>
+                                <div class="text-center p-2 rounded" style="background:rgba(123,127,196,0.05);">
+                                    <div class="text-sm font-bold" style="color:#7b7fc4;">2.4s</div>
+                                    <div class="text-[9px]" style="color:#5a677a;">Avg response</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Content -->
+            <div class="reveal reveal-d1">
+                <p class="section-label mb-6" style="color:#c9a84c;">Introducing</p>
+                <h2 class="syne text-3xl lg:text-4xl font-bold leading-tight mb-2" style="color:#f0ead6;">
+                    AI Agents that work<br>
+                    <span style="color:#c9a84c;">while you sleep.</span>
+                </h2>
+                <p class="text-base leading-relaxed mt-6 mb-8" style="color:#9da8b8;">
+                    Your practice never closes. AI agents answer calls, chase overdue invoices, qualify new leads, and flag compliance deadlines — all without a single extra hire.
+                </p>
+
+                <div class="space-y-5 mb-10">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(46,184,160,0.12); border:1px solid rgba(46,184,160,0.25);">
+                            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#2eb8a0" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold mb-1" style="color:#f0ead6;">Never miss a call again</h4>
+                            <p class="text-xs leading-relaxed" style="color:#5a677a;">AI picks up every ring, qualifies the caller, and books them straight into your calendar.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.25);">
+                            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#c9a84c" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold mb-1" style="color:#f0ead6;">Invoices chased automatically</h4>
+                            <p class="text-xs leading-relaxed" style="color:#5a677a;">Polite, persistent follow-ups across email, SMS & WhatsApp until you get paid.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(123,127,196,0.12); border:1px solid rgba(123,127,196,0.25);">
+                            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#7b7fc4" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold mb-1" style="color:#f0ead6;">Compliance on autopilot</h4>
+                            <p class="text-xs leading-relaxed" style="color:#5a677a;">BAS, payroll and lodgement deadlines tracked and escalated before they're missed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#demo" class="btn-primary px-8 py-3.5 rounded-[3px] text-sm inline-block">See agents in action →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ PRICING — "The Choice" ═══ -->
+<section id="pricing" class="py-28 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <p class="section-label mb-4">Pricing</p>
+            <h2 class="syne text-3xl lg:text-4xl font-bold mb-4">One decision. One platform. One fee.</h2>
+            <p class="text-sm" style="color:var(--text-muted)">Fixed pricing, billed annually. No variable charges.</p>
+        </div>
+        <div class="flex justify-center mb-10 reveal">
+            <span class="tag-mono">All prices AUD + GST · Billed yearly</span>
+        </div>
+
+        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 items-start">
+
+            <!-- Launch -->
+            <div class="card rounded-[4px] p-7 flex flex-col reveal">
+                <div class="mb-5">
+                    <p class="section-label mb-2">Launch</p>
+                    <h3 class="syne text-lg font-bold leading-snug mb-2" style="color:var(--text-bright)">AI-Powered Marketing Partner</h3>
+                </div>
+                <div class="mb-5">
+                    <div class="mb-1"><span class="text-xs mr-1" style="color:var(--text-muted)">AUD</span><span class="syne text-4xl font-bold" style="color:var(--text-bright)">$430</span><span class="text-sm ml-1" style="color:var(--text-muted)">/month</span></div>
+                    <p class="text-xs mb-4" style="color:var(--text-muted)">billed yearly</p>
+                </div>
+                <div class="mb-5">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        What's included
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="pricing-features mt-3">
+                        <ul class="space-y-2.5 pt-2 border-t" style="border-color:var(--border)">
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Chat Widget</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Appointment Calendar</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>CRM</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Google Business Profile</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Facebook &amp; Instagram</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Centralised Inbox</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Mobile App</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <a href="#demo" class="btn-outline block w-full text-center py-3 rounded-[3px] text-sm">Book a Demo</a>
+                </div>
+            </div>
+
+            <!-- Elevate (Featured) -->
+            <div class="pricing-featured rounded-[4px] p-7 flex flex-col relative reveal reveal-d1">
+                <div class="absolute -top-px left-1/2 -translate-x-1/2">
+                    <span class="syne text-[10px] font-bold tracking-widest uppercase bg-[#c9a84c] text-[#0a0e1a] px-4 py-1.5 block rounded-b-[3px]">Most Popular</span>
+                </div>
+                <div class="mb-5 mt-3">
+                    <p class="section-label mb-2">Elevate</p>
+                    <h3 class="syne text-lg font-bold leading-snug mb-2" style="color:var(--text-bright)">AI-Powered Growth Team</h3>
+                </div>
+                <div class="mb-5">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="syne text-lg font-semibold line-through" style="color:var(--text-muted)">$980</span>
+                        <span class="syne text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded" style="color:var(--gold);background:rgba(201,168,76,0.1)">Save 30%</span>
+                    </div>
+                    <div class="mb-1"><span class="text-xs mr-1" style="color:var(--text-muted)">AUD</span><span class="syne text-4xl font-bold" style="color:var(--text-bright)">$690</span><span class="text-sm ml-1" style="color:var(--text-muted)">/month</span></div>
+                    <p class="text-xs mb-4" style="color:var(--text-muted)">billed yearly</p>
+                </div>
+                <div class="mb-5">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        What's included
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="pricing-features mt-3">
+                        <ul class="space-y-2.5 pt-2 border-t" style="border-color:var(--border)">
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Launch</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Purpose-Built Website</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>AI Chat &amp; Basic SEO</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Enquiry Pipeline</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Reputation Management</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Weekly Social Media</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Follow-up &amp; Referral Campaigns</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <a href="#demo" class="btn-primary block w-full text-center py-3 rounded-[3px] text-sm">Book a Demo</a>
+                </div>
+            </div>
+
+            <!-- Dominate -->
+            <div class="card rounded-[4px] p-7 flex flex-col reveal reveal-d2">
+                <div class="mb-5">
+                    <p class="section-label mb-2">Dominate</p>
+                    <h3 class="syne text-lg font-bold leading-snug mb-2" style="color:var(--text-bright)">AI-Powered Marketing Dept</h3>
+                </div>
+                <div class="mb-5">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="syne text-lg font-semibold line-through" style="color:var(--text-muted)">$1,680</span>
+                        <span class="syne text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded" style="color:#2eb8a0;background:rgba(46,184,160,0.1)">Save 42%</span>
+                    </div>
+                    <div class="mb-1"><span class="text-xs mr-1" style="color:var(--text-muted)">AUD</span><span class="syne text-4xl font-bold" style="color:var(--text-bright)">$980</span><span class="text-sm ml-1" style="color:var(--text-muted)">/month</span></div>
+                    <p class="text-xs mb-4" style="color:var(--text-muted)">billed yearly</p>
+                </div>
+                <div class="mb-5">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        What's included
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="pricing-features mt-3">
+                        <ul class="space-y-2.5 pt-2 border-t" style="border-color:var(--border)">
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Elevate</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>New Webpage Monthly</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Landing Pages</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Advanced SEO &amp; AEO</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Social &amp; LinkedIn Management</li>
+                            <li class="check-item text-xs" style="color:var(--text-body)"><svg class="check-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Google &amp; Meta Ads</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <a href="#demo" class="btn-outline block w-full text-center py-3 rounded-[3px] text-sm">Book a Demo</a>
+                </div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="rounded-[4px] p-7 flex flex-col reveal reveal-d3" style="border:1px solid rgba(251,191,36,0.3); background:#0d1117;">
+                <div class="mb-5">
+                    <p class="text-[11px] font-bold tracking-widest uppercase mb-2" style="color:#fbbf24">Enterprise</p>
+                    <h3 class="syne text-lg font-bold leading-snug mb-2" style="color:#f0ead6;">AI Command Center</h3>
+                </div>
+                <div class="mb-5">
+                    <p class="text-xs uppercase tracking-wider font-semibold mb-1" style="color:#5a677a;">Starting from</p>
+                    <div class="mb-1"><span class="text-xs mr-1" style="color:#5a677a;">AUD</span><span class="syne text-4xl font-bold" style="color:#f0ead6;">$5,760</span><span class="text-sm ml-1" style="color:#5a677a;">/month</span></div>
+                    <p class="text-xs mb-4" style="color:#fbbf24">billed yearly</p>
+                </div>
+                <div class="mb-5">
+                    <button class="pricing-toggle" onclick="togglePricing(this)" style="color:#fbbf24">
+                        What's included
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="pricing-features mt-3">
+                        <ul class="space-y-2.5 pt-2 border-t" style="border-color:rgba(251,191,36,0.15);">
+                            <li class="check-item text-xs" style="color:#9da8b8;"><svg class="check-icon w-4 h-4" style="color:#fbbf24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Dominate</li>
+                            <li class="check-item text-xs" style="color:#9da8b8;"><svg class="check-icon w-4 h-4" style="color:#fbbf24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Custom AI Workflows</li>
+                            <li class="check-item text-xs" style="color:#9da8b8;"><svg class="check-icon w-4 h-4" style="color:#fbbf24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Multi-site Dashboard</li>
+                            <li class="check-item text-xs" style="color:#9da8b8;"><svg class="check-icon w-4 h-4" style="color:#fbbf24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Predictive Analytics</li>
+                            <li class="check-item text-xs" style="color:#9da8b8;"><svg class="check-icon w-4 h-4" style="color:#fbbf24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dedicated Account Director</li>
+                            <li class="check-item text-xs" style="color:#9da8b8;"><svg class="check-icon w-4 h-4" style="color:#fbbf24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Enterprise SLA</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <a href="#demo" class="block w-full text-center py-3 rounded-[3px] text-sm font-bold transition-all" style="background:#fbbf24;color:#0d1117;">Let's talk →</a>
+                </div>
+            </div>
+
+        </div>
+        <p class="text-center text-lg mt-10 reveal" style="color:var(--text-body); font-weight:500;">No lock-in contracts. <span class="animated-gold-text">Australian-based support.</span> <a href="#demo" class="underline underline-offset-2" style="color:var(--gold)">Contact us</a> for multi-partner arrangements.</p>
+    </div>
+</section>
+
+<hr class="hr-grad">
+
+<!-- ═══ DEMO FORM — "The Invitation" ═══ -->
+<section id="demo" class="py-28 px-6 lg:px-10">
+    <div class="max-w-2xl mx-auto">
+        <div class="card rounded-[4px] p-10 relative overflow-hidden reveal">
+            <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl pointer-events-none" style="background:rgba(201,168,76,0.05)"></div>
+            <div class="relative">
+                <h2 class="syne text-3xl font-bold text-center mb-3">See it applied to your practice.</h2>
+                <p class="text-center mb-10 leading-relaxed" style="color:var(--text-muted)">Not a sales pitch. Not a demo script.<br>Your questions. Your challenges. Your practice.</p>
+                <div class="space-y-5">
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-semibold mb-2 tracking-wide uppercase" style="color:var(--text-body)">Full Name *</label>
+                            <input type="text" placeholder="John Smith" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-2 tracking-wide uppercase" style="color:var(--text-body)">Work Email *</label>
+                            <input type="email" placeholder="john@firm.com.au" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-semibold mb-2 tracking-wide uppercase" style="color:var(--text-body)">Firm Name *</label>
+                            <input type="text" placeholder="Smith & Partners" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-2 tracking-wide uppercase" style="color:var(--text-body)">State *</label>
+                            <select required>
+                                <option value="">Select</option>
+                                <option>NSW</option><option>VIC</option><option>QLD</option>
+                                <option>WA</option><option>SA</option><option>TAS</option>
+                                <option>ACT</option><option>NT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-2 tracking-wide uppercase" style="color:var(--text-body)">What's your biggest operational challenge?</label>
+                        <textarea rows="3" placeholder="e.g. EOFY workload, client follow-ups, new enquiry handling, outdated website..."></textarea>
+                    </div>
+                    <button type="button" class="btn-primary w-full py-4 rounded-[3px] text-base mt-2">Request Your Consultation →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq" class="py-20 px-6 lg:px-10" style="background:#0d1117;">
+    <div class="max-w-3xl mx-auto">
+        <p class="section-label mb-4 text-center reveal" style="color:#c9a84c;">Frequently Asked Questions</p>
+        <h2 class="syne text-2xl lg:text-3xl font-bold text-center mb-12 reveal" style="color:#f0ead6;">Got questions? We've got answers.</h2>
+
+        <div class="space-y-0 reveal">
+            <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.18);">
+                <button class="faq-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="faq-q">Is VCPility a DIY product or plug‑and‑play?</span>
+                    <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>VCPility is a guided, plug‑and‑play solution. A dedicated team stays with your business, managing essentials like digital marketing, AEO and SEO so you can focus on strategy and client work.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.18);">
+                <button class="faq-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="faq-q">How does VCPility help my accounting firm get paid faster?</span>
+                    <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>VCPility automates reminders, follow‑ups and payment links across email, SMS and WhatsApp, so invoices are paid sooner and debtor days fall without extra chasing from your team.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.18);">
+                <button class="faq-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="faq-q">If I already use accounting software, how does VCPility add value?</span>
+                    <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>VCPility sits on top of your existing tools, pulling key data into a single dashboard that highlights your most important numbers and trends, reducing effort and improving decision‑making.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.18);">
+                <button class="faq-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="faq-q">Do I need to change or replace my current systems?</span>
+                    <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>No. VCPility connects to the platforms you already use and enhances them, creating a unified workflow rather than asking you to start again on a new system.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.18);">
+                <button class="faq-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="faq-q">Is VCPility secure for client financial and personal data?</span>
+                    <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes. VCPility is built on secure, cloud‑hosted infrastructure with role‑based access and activity logs, helping you protect sensitive data and maintain clear records of client interactions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.18);">
+                <button class="faq-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="faq-q">Can VCPility's AI agents handle calls and bookings for my practice?</span>
+                    <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes. AI call agents answer your virtual number, qualify callers, handle common billing and tax queries, and book appointments directly into your calendar or practice system, day or night.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="py-14 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-10 text-sm" style="color:var(--text-muted)">
+            <div class="md:col-span-2">
+                <span class="syne text-xl font-bold mb-3 block" style="color:var(--text-bright)">VCPility</span>
+                <p class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:var(--text-muted)">Practice Operating System</p>
+                <p class="leading-relaxed mt-2">Built exclusively for Australian accounting, tax, and bookkeeping practices.</p>
+            </div>
+            <div>
+                <h4 class="syne font-semibold mb-4" style="color:var(--text-bright)">Contact</h4>
+                <p class="leading-relaxed">244 Macquarie St<br>Liverpool NSW 2170<br>Australia</p>
+                <a href="tel:+61468046468" class="mt-2 block hover:text-[var(--gold)] transition-colors">+61 468 046 468</a>
+            </div>
+            <div>
+                <h4 class="syne font-semibold mb-4" style="color:var(--text-bright)">Hours</h4>
+                <p class="leading-relaxed">Monday – Friday<br>9:00 AM to 6:00 PM</p>
+                <p class="mt-4">&copy; 2026 VCPility.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+// Scroll reveal (IntersectionObserver)
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.05, rootMargin: '50px 0px 0px 0px' });
+// Small delay ensures elements already in viewport get observed correctly
+requestAnimationFrame(() => {
+    reveals.forEach(el => observer.observe(el));
+});
+
+// Count-up animation
+const counters = document.querySelectorAll('.count-up');
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseFloat(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const decimals = el.dataset.target.includes('.') ? el.dataset.target.split('.')[1].length : 0;
+            const duration = 1500;
+            const start = performance.now();
+            function tick(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = (target * eased).toFixed(decimals) + suffix;
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+counters.forEach(el => counterObserver.observe(el));
+
+// Pricing toggle
+function togglePricing(btn) {
+    const features = btn.nextElementSibling;
+    btn.classList.toggle('open');
+    features.classList.toggle('open');
+}
+
+// Mobile timeline tap-to-reveal
+if (window.innerWidth <= 768) {
+    document.querySelectorAll('.timeline-node').forEach(node => {
+        node.addEventListener('click', () => {
+            const wasActive = node.classList.contains('active');
+            document.querySelectorAll('.timeline-node').forEach(n => n.classList.remove('active'));
+            if (!wasActive) node.classList.add('active');
+        });
+    });
+}
+
+// Logo Loop — smooth rAF-driven marquee (React Bits style)
+(function() {
+    const tracks = document.querySelectorAll('.marquee-track');
+    tracks.forEach(track => {
+        const isReverse = track.dataset.reverse === 'true';
+        const baseSpeed = parseFloat(track.dataset.speed) || 0.5;
+        let offset = 0;
+        let currentSpeed = baseSpeed;
+        let targetSpeed = baseSpeed;
+        let halfWidth = 0;
+
+        // Count how many duplicate sets: look for comment nodes or use data attribute
+        const copies = parseInt(track.dataset.copies) || 2;
+        function calcWidth() {
+            halfWidth = track.scrollWidth / copies;
+        }
+        calcWidth();
+        setTimeout(calcWidth, 1000);
+        setTimeout(calcWidth, 3000);
+
+        const wrap = track.parentElement;
+        wrap.addEventListener('mouseenter', () => { targetSpeed = baseSpeed * 0.15; });
+        wrap.addEventListener('mouseleave', () => { targetSpeed = baseSpeed; });
+
+        function update() {
+            if (halfWidth === 0) { calcWidth(); }
+            currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+            offset += isReverse ? -currentSpeed : currentSpeed;
+            if (!isReverse && offset >= halfWidth) { offset -= halfWidth; }
+            if (isReverse && offset <= -halfWidth) { offset += halfWidth; }
+            track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+            requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+    });
+})();
+
+// GSAP ScrollTrigger — services section scroll animations
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from('.gsap-label', {
+    scrollTrigger: { trigger: '.gsap-label', start: 'top 85%' },
+    opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+});
+
+gsap.from('.gsap-heading', {
+    scrollTrigger: { trigger: '.gsap-heading', start: 'top 85%' },
+    opacity: 0, y: 50, duration: 1, ease: 'power3.out', delay: 0.2
+});
+
+gsap.utils.toArray('.gsap-rule, .gsap-divider').forEach(rule => {
+    gsap.to(rule, {
+        scrollTrigger: { trigger: rule, start: 'top 90%' },
+        width: '100%', duration: 1.2, ease: 'power2.inOut'
+    });
+});
+
+gsap.utils.toArray('.gsap-panel').forEach((panel) => {
+    gsap.to(panel, {
+        scrollTrigger: { trigger: panel, start: 'top 80%' },
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out'
+    });
+
+    const children = panel.querySelectorAll('h3, p, .flex, span');
+    gsap.from(children, {
+        scrollTrigger: { trigger: panel, start: 'top 80%' },
+        opacity: 0, y: 25, stagger: 0.08, duration: 0.6, ease: 'power2.out', delay: 0.3
+    });
+
+    const img = panel.querySelector('img');
+    if (img) {
+        gsap.from(img, {
+            scrollTrigger: { trigger: panel, start: 'top 85%', end: 'bottom 20%', scrub: 1 },
+            scale: 1.15, ease: 'none'
+        });
+    }
+});
+</script>
+
+<!-- END OF SCRIPTS -->
+</body>
+</html>

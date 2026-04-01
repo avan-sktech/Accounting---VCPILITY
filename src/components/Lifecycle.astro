@@ -1,0 +1,328 @@
+<!-- ═══ PLATFORM SHOWCASE — Card Swap ═══ -->
+<section class="relative overflow-hidden py-28 px-6 lg:px-10" style="background:#0d1117;">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[1fr_1.3fr] gap-16 items-center">
+
+            <!-- Left: Copy -->
+            <div class="reveal">
+                <p class="section-label mb-4" style="color:#c9a84c;">THE COMPLETE PRACTICE LIFECYCLE</p>
+                <h2 class="syne text-3xl lg:text-4xl font-bold leading-tight mb-6" style="color:#f0ead6;">
+                    Glimpses of the<br>Future of Accounting.
+                </h2>
+                <p class="text-base leading-relaxed mb-8" style="color:#9da8b8;">
+                    From visibility and enquiry capture to compliance automation and client retention — VCPility covers every stage of your practice lifecycle in a single unified platform.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(201,168,76,0.15); color:#c9a84c; border:1px solid rgba(201,168,76,0.3);">1</div>
+                        <span style="color:#f0ead6;" class="text-sm font-medium">Calendars & Scheduling</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(201,168,76,0.15); color:#c9a84c; border:1px solid rgba(201,168,76,0.3);">2</div>
+                        <span style="color:#f0ead6;" class="text-sm font-medium">Workflow Automation</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(201,168,76,0.15); color:#c9a84c; border:1px solid rgba(201,168,76,0.3);">3</div>
+                        <span style="color:#f0ead6;" class="text-sm font-medium">Reputation & Reviews</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(201,168,76,0.3); color:#c9a84c; border:1px solid rgba(201,168,76,0.5);">4</div>
+                        <span style="color:#c9a84c;" class="text-sm font-bold">Complete Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Card Swap -->
+            <div class="card-swap-wrapper reveal" id="card-swap-wrapper">
+                <div class="card-swap-container" id="card-swap-container">
+                    <div class="swap-card" data-index="0">
+                        <img src="/dashboard-calender.png" alt="VCPility Calendar & Scheduling" loading="lazy">
+                        <div class="swap-card-label">
+                            <span class="swap-card-num">01</span>
+                            <span>Calendars & Scheduling</span>
+                        </div>
+                    </div>
+                    <div class="swap-card" data-index="1">
+                        <img src="/dashboard-workflow.png" alt="VCPility Workflow Automation" loading="lazy">
+                        <div class="swap-card-label">
+                            <span class="swap-card-num">02</span>
+                            <span>Workflow Automation</span>
+                        </div>
+                    </div>
+                    <div class="swap-card" data-index="2">
+                        <img src="/dashboard-reputation.png" alt="VCPility Reputation Management" loading="lazy">
+                        <div class="swap-card-label">
+                            <span class="swap-card-num">03</span>
+                            <span>Reputation & Reviews</span>
+                            <span class="swap-card-caption">Marketing now AI-powered</span>
+                        </div>
+                    </div>
+                    <div class="swap-card swap-card-hero" data-index="3" data-hero="true">
+                        <img src="/dashboard-contacts.jpeg" alt="VCPility Contact Analytics" loading="lazy">
+                        <div class="swap-card-label swap-card-label-gold">
+                            <span class="swap-card-num swap-card-num-gold">04</span>
+                            <span>Complete Analytics at Your Desk</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .card-swap-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        min-height: 350px;
+    }
+    .card-swap-container {
+        position: absolute;
+        inset: 0;
+        perspective: 1000px;
+        overflow: visible;
+    }
+    .swap-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        max-width: 560px;
+        border-radius: 12px;
+        border: 1px solid rgba(201,168,76,0.3);
+        background: #0b0f14;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.08);
+        cursor: pointer;
+        transition: border-color 0.3s;
+    }
+    .swap-card:hover {
+        border-color: rgba(201,168,76,0.6);
+    }
+    .swap-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 11px 11px 0 0;
+    }
+    .swap-card-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #f0ead6;
+        background: rgba(11,15,20,0.95);
+        border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    .swap-card-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-size: 0.65rem;
+        font-weight: 700;
+        background: rgba(201,168,76,0.15);
+        color: #c9a84c;
+        border: 1px solid rgba(201,168,76,0.3);
+    }
+    /* Hero (4th) card gold styling */
+    .swap-card-hero.swap-card-showcase {
+        border-color: rgba(201,168,76,0.7) !important;
+        box-shadow: 0 12px 48px rgba(201,168,76,0.2), 0 0 0 2px rgba(201,168,76,0.3) !important;
+        z-index: 20 !important;
+    }
+    .swap-card-label-gold {
+        background: rgba(201,168,76,0.12) !important;
+        border-top-color: rgba(201,168,76,0.4) !important;
+        color: #c9a84c !important;
+    }
+    .swap-card-num-gold {
+        background: rgba(201,168,76,0.3) !important;
+        color: #f0ead6 !important;
+        border-color: rgba(201,168,76,0.6) !important;
+    }
+
+    .swap-card-caption {
+        margin-left: auto;
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #c9a84c;
+        opacity: 0.7;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 1024px) {
+        .card-swap-wrapper {
+            aspect-ratio: 16 / 11;
+            min-height: 300px;
+        }
+    }
+    @media (max-width: 640px) {
+        .card-swap-wrapper {
+            aspect-ratio: 4 / 3;
+            min-height: 260px;
+        }
+        .swap-card {
+            width: 85%;
+        }
+    }
+</style>
+
+<script>
+    function initCardSwap() {
+        const container = document.getElementById('card-swap-container');
+        if (!container) return;
+
+        const cards = Array.from(container.querySelectorAll('.swap-card'));
+        const total = cards.length;
+        if (total < 2) return;
+
+        const CARD_DIST_X = 40;
+        const CARD_DIST_Y = 30;
+        const DELAY = 1800;
+        const SKEW = 4;
+        const HERO_INDEX = 3; // 4th card (0-based)
+        const SHOWCASE_DURATION = 2500;
+
+        let order = cards.map((_, i) => i);
+        let animating = false;
+        let interval;
+        let paused = false;
+        let swapCount = 0;
+
+        function getSlot(i) {
+            return {
+                x: i * CARD_DIST_X,
+                y: -i * CARD_DIST_Y,
+                z: -i * CARD_DIST_X * 1.2,
+                zIndex: total - i
+            };
+        }
+
+        function applySlot(el, slot, animate) {
+            const transform = `translate(-50%, -50%) translateX(${slot.x}px) translateY(${slot.y}px) translateZ(${slot.z}px) skewY(${SKEW}deg)`;
+            el.style.transition = animate ? 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s' : 'none';
+            el.style.transform = transform;
+            el.style.zIndex = slot.zIndex;
+        }
+
+        // Initial placement
+        order.forEach((cardIdx, slotIdx) => {
+            applySlot(cards[cardIdx], getSlot(slotIdx), false);
+        });
+
+        function showcaseHeroCard() {
+            // When the hero card reaches front, do a special showcase
+            const heroEl = cards[HERO_INDEX];
+            heroEl.classList.add('swap-card-showcase');
+
+            // Straighten and center it (no skew, larger)
+            heroEl.style.transition = 'transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease';
+            heroEl.style.transform = 'translate(-50%, -50%) translateX(0px) translateY(0px) translateZ(0px) skewY(0deg) scale(1.05)';
+            heroEl.style.zIndex = 30;
+
+            // After showcase, return to normal and continue
+            setTimeout(() => {
+                heroEl.classList.remove('swap-card-showcase');
+                heroEl.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                const slot = getSlot(0);
+                heroEl.style.transform = `translate(-50%, -50%) translateX(${slot.x}px) translateY(${slot.y}px) translateZ(${slot.z}px) skewY(${SKEW}deg) scale(1)`;
+                heroEl.style.zIndex = slot.zIndex;
+
+                setTimeout(() => {
+                    animating = false;
+                    // Resume normal swapping
+                    interval = setInterval(swap, DELAY);
+                }, 800);
+            }, SHOWCASE_DURATION);
+        }
+
+        function swap() {
+            if (animating || paused) return;
+            animating = true;
+            swapCount++;
+
+            const frontIdx = order[0];
+            const frontEl = cards[frontIdx];
+
+            // Drop front card down
+            frontEl.style.transition = 'transform 0.6s cubic-bezier(0.55, 0, 1, 0.45), opacity 0.4s ease';
+            const currentSlot = getSlot(0);
+            frontEl.style.transform = `translate(-50%, -50%) translateX(${currentSlot.x}px) translateY(400px) translateZ(${currentSlot.z}px) skewY(${SKEW}deg)`;
+            frontEl.style.opacity = '0';
+
+            setTimeout(() => {
+                const newOrder = [...order.slice(1), frontIdx];
+
+                newOrder.forEach((cardIdx, slotIdx) => {
+                    if (cardIdx !== frontIdx) {
+                        applySlot(cards[cardIdx], getSlot(slotIdx), true);
+                    }
+                });
+
+                setTimeout(() => {
+                    const backSlot = getSlot(total - 1);
+                    frontEl.style.transition = 'none';
+                    frontEl.style.transform = `translate(-50%, -50%) translateX(${backSlot.x}px) translateY(${backSlot.y - 80}px) translateZ(${backSlot.z}px) skewY(${SKEW}deg)`;
+                    frontEl.style.opacity = '0';
+
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            frontEl.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease';
+                            frontEl.style.transform = `translate(-50%, -50%) translateX(${backSlot.x}px) translateY(${backSlot.y}px) translateZ(${backSlot.z}px) skewY(${SKEW}deg)`;
+                            frontEl.style.zIndex = backSlot.zIndex;
+                            frontEl.style.opacity = '1';
+                        });
+                    });
+
+                    order = newOrder;
+
+                    // Check if hero card is now at front after this swap
+                    if (order[0] === HERO_INDEX && swapCount % total === 0) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            showcaseHeroCard();
+                        }, 800);
+                    } else {
+                        setTimeout(() => { animating = false; }, 700);
+                    }
+                }, 500);
+            }, 450);
+        }
+
+        // Auto-swap
+        interval = setInterval(swap, DELAY);
+
+        // Pause on hover
+        container.addEventListener('mouseenter', () => {
+            paused = true;
+            clearInterval(interval);
+        });
+        container.addEventListener('mouseleave', () => {
+            paused = false;
+            interval = setInterval(swap, DELAY);
+        });
+
+        // Click to swap
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (!animating) swap();
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initCardSwap);
+</script>

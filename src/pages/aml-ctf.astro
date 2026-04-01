@@ -1,0 +1,319 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="AML/CTF Compliance Readiness | VCPility — Accounting OS">
+    <Nav />
+    <div class="pt-24">
+
+        <!-- Hero -->
+        <section class="aml-hero">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <div class="aml-eyebrow">
+                            <span class="aml-dot"></span>
+                            AUSTRAC Tranche 2 — 1 July 2026
+                        </div>
+                        <h1 class="syne aml-heading">
+                            AML/CTF is coming for <span style="color:#c9a84c;">accountants</span>.<br>
+                            Is your practice <span style="color:#2dd4bf;">ready</span>?
+                        </h1>
+                        <p class="aml-body">
+                            From <strong>1 July 2026</strong>, accounting firms providing designated services must enrol with AUSTRAC, implement an AML/CTF program, and conduct ongoing customer due diligence. <strong>VCPility gives you the communication, workflow, and record-keeping infrastructure</strong> to manage compliance without drowning in admin.
+                        </p>
+                        <a href="/demo" class="btn-primary px-8 py-3.5 rounded-[3px] text-base inline-block mt-2">Get Your Compliance Plan →</a>
+                    </div>
+
+                    <!-- Countdown Box -->
+                    <div class="aml-countdown-box">
+                        <div class="aml-cb-header">
+                            <span>⚠ Countdown to AUSTRAC Compliance</span>
+                        </div>
+                        <div class="aml-cb-grid" id="aml-page-countdown">
+                            <div class="aml-cb-unit"><span class="aml-cb-num" id="ap-days">--</span><span class="aml-cb-label">Days</span></div>
+                            <div class="aml-cb-unit"><span class="aml-cb-num" id="ap-hours">--</span><span class="aml-cb-label">Hours</span></div>
+                            <div class="aml-cb-unit"><span class="aml-cb-num" id="ap-mins">--</span><span class="aml-cb-label">Minutes</span></div>
+                            <div class="aml-cb-unit"><span class="aml-cb-num" id="ap-secs">--</span><span class="aml-cb-label">Seconds</span></div>
+                        </div>
+                        <div class="aml-cb-timeline">
+                            <div class="aml-cb-event aml-cb-done">
+                                <span class="aml-cb-date" style="color:#22c55e;">10 Dec 2024</span>
+                                <span>AML/CTF reforms passed into legislation</span>
+                            </div>
+                            <div class="aml-cb-event aml-cb-done">
+                                <span class="aml-cb-date" style="color:#22c55e;">31 Mar 2026</span>
+                                <span>Enrolment opens for Tranche 2 entities</span>
+                            </div>
+                            <div class="aml-cb-event aml-cb-active">
+                                <span class="aml-cb-date" style="color:#c9a84c;">1 Jul 2026</span>
+                                <span>AML/CTF obligations commence for accounting firms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust bar -->
+        <section class="aml-trust">
+            <div class="max-w-5xl mx-auto px-6 flex flex-wrap items-center justify-center gap-6">
+                <span class="aml-trust-label">Built for registered practices</span>
+                <span class="aml-trust-pill">🏛 CPA Australia</span>
+                <span class="aml-trust-pill">🏛 CA ANZ</span>
+                <span class="aml-trust-pill">🏛 Tax Practitioners Board</span>
+                <span class="aml-trust-pill">🏛 ATO Registered Agents</span>
+            </div>
+        </section>
+
+        <!-- What AUSTRAC expects -->
+        <section class="aml-obligations">
+            <div class="max-w-5xl mx-auto px-6 lg:px-10">
+                <div class="text-center mb-14">
+                    <h2 class="syne font-bold" style="color:#f0ead6; font-size:clamp(1.8rem,3.5vw,2.4rem);">What AUSTRAC expects from your practice.</h2>
+                    <p style="color:#9da8b8; margin-top:0.8rem; font-size:0.95rem;">These are not optional. Non-compliance carries civil penalties and potential registration cancellation.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-5">
+                    <div class="aml-oblig-card">
+                        <span class="aml-oblig-tag">Mandatory</span>
+                        <h3>Enrol with AUSTRAC</h3>
+                        <p>Register as a reporting entity if you provide designated services — company or trust formation, real estate transactions, client fund management, or nominee directorships.</p>
+                    </div>
+                    <div class="aml-oblig-card">
+                        <span class="aml-oblig-tag">Mandatory</span>
+                        <h3>AML/CTF Program</h3>
+                        <p>Develop and maintain a compliance program covering risk assessment, customer due diligence, policies and procedures, staff training, and record-keeping.</p>
+                    </div>
+                    <div class="aml-oblig-card">
+                        <span class="aml-oblig-tag">Mandatory</span>
+                        <h3>Suspicious Matter Reporting</h3>
+                        <p>Monitor for suspicious activity — identity concealment, unusual transactions, complex structures without legitimate purpose — and report to AUSTRAC.</p>
+                    </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="aml-disclaimer">
+                    <p><strong style="color:#c9a84c;">⚠ Important:</strong> VCPility does not provide AML/CTF compliance advice, legal advice, or risk assessments. Consult AUSTRAC, your compliance adviser, or your professional body for obligations specific to your practice. VCPility supports the communication layer only.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <Footer />
+</Layout>
+
+<style>
+    .aml-hero {
+        padding: 5rem 0;
+        background: #0d1117;
+    }
+    .aml-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #c9a84c;
+        background: rgba(201,168,76,0.08);
+        border: 1px solid rgba(201,168,76,0.2);
+        border-radius: 100px;
+        padding: 6px 16px;
+        margin-bottom: 1.5rem;
+    }
+    .aml-dot {
+        width: 7px; height: 7px;
+        background: #c9a84c;
+        border-radius: 50%;
+        animation: blink 1s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .aml-heading {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: #f0ead6;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+    }
+    .aml-body {
+        font-size: 1rem;
+        color: #9da8b8;
+        line-height: 1.75;
+        max-width: 480px;
+    }
+    .aml-body strong { color: #f0ead6; font-weight: 600; }
+
+    /* Countdown box */
+    .aml-countdown-box {
+        background: rgba(13,17,23,0.8);
+        border: 1.5px solid rgba(201,168,76,0.25);
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .aml-cb-header {
+        padding: 1rem 1.5rem;
+        background: rgba(201,168,76,0.06);
+        border-bottom: 1px solid rgba(201,168,76,0.15);
+        text-align: center;
+        font-family: 'Syne', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #c9a84c;
+    }
+    .aml-cb-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+        padding: 1.5rem;
+    }
+    .aml-cb-unit {
+        text-align: center;
+        padding: 1rem 0.5rem;
+        background: rgba(201,168,76,0.04);
+        border: 1px solid rgba(201,168,76,0.15);
+        border-radius: 10px;
+    }
+    .aml-cb-num {
+        display: block;
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 800;
+        color: #f0ead6;
+        line-height: 1;
+    }
+    .aml-cb-label {
+        display: block;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #c9a84c;
+        margin-top: 0.4rem;
+        font-weight: 700;
+    }
+    .aml-cb-timeline {
+        padding: 0 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+    .aml-cb-event {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        color: #9da8b8;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.04);
+    }
+    .aml-cb-done { opacity: 0.5; }
+    .aml-cb-active {
+        border-color: rgba(201,168,76,0.25);
+        background: rgba(201,168,76,0.04);
+    }
+    .aml-cb-date {
+        font-size: 0.7rem;
+        font-weight: 700;
+        white-space: nowrap;
+        min-width: 85px;
+    }
+
+    /* Trust */
+    .aml-trust {
+        padding: 1.2rem 0;
+        background: #0a0e14;
+        border-top: 1px solid rgba(201,168,76,0.1);
+        border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .aml-trust-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #5a677a;
+    }
+    .aml-trust-pill {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #9da8b8;
+        background: rgba(240,234,214,0.04);
+        border: 1px solid rgba(240,234,214,0.08);
+        padding: 5px 14px;
+        border-radius: 100px;
+    }
+
+    /* Obligations */
+    .aml-obligations {
+        padding: 5rem 0;
+        background: #0d1117;
+    }
+    .aml-oblig-card {
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        background: rgba(201,168,76,0.03);
+        border: 1px solid rgba(201,168,76,0.12);
+    }
+    .aml-oblig-tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #c9a84c;
+        background: rgba(201,168,76,0.1);
+        padding: 3px 10px;
+        border-radius: 100px;
+        margin-bottom: 1rem;
+    }
+    .aml-oblig-card h3 {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #f0ead6;
+        margin-bottom: 0.5rem;
+    }
+    .aml-oblig-card p {
+        font-size: 0.85rem;
+        color: #9da8b8;
+        line-height: 1.6;
+    }
+    .aml-disclaimer {
+        margin-top: 2.5rem;
+        padding: 1rem 1.5rem;
+        background: rgba(201,168,76,0.04);
+        border: 1px solid rgba(201,168,76,0.12);
+        border-radius: 10px;
+        text-align: center;
+    }
+    .aml-disclaimer p {
+        font-size: 0.78rem;
+        color: #5a677a;
+        line-height: 1.55;
+    }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+    var target = new Date('2026-07-01T00:00:00+10:00').getTime();
+    function update() {
+        var now = Date.now();
+        var diff = Math.max(0, target - now);
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        var de = document.getElementById('ap-days');
+        var he = document.getElementById('ap-hours');
+        var me = document.getElementById('ap-mins');
+        var se = document.getElementById('ap-secs');
+        if (de) de.textContent = d;
+        if (he) he.textContent = h;
+        if (me) me.textContent = m;
+        if (se) se.textContent = s;
+    }
+    update();
+    setInterval(update, 1000);
+});
+</script>

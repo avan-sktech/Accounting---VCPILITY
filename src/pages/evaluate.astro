@@ -1,0 +1,547 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Evaluate | VCPility vs Karbon — Side by Side">
+    <Nav />
+
+    <!-- ═══ HERO ═══ -->
+    <section class="pt-32 pb-16 px-6 lg:px-10 text-center relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%);"></div>
+        <div class="max-w-4xl mx-auto relative">
+            <p class="section-label mb-5 reveal" style="color:var(--gold);">THE COMPETITIVE DIFFERENCE</p>
+            <h1 class="syne font-bold leading-tight mb-6 reveal" style="font-size:clamp(2.2rem,5vw,3.8rem); color:var(--text-bright);">
+                VCPility vs Karbon —<br>side by side.
+            </h1>
+            <p class="text-base lg:text-lg leading-relaxed max-w-3xl mx-auto reveal" style="color:var(--text-muted);">
+                Karbon is a capable internal workflow tool — nothing more.
+                <strong style="color:#ff6b6b;">It has no website builder, no managed marketing, no AI voice agent, no lead generation, no social media management, and no dedicated account manager.</strong>
+                VCPility was engineered from the ground up as a complete practice growth operating system. The difference in scope is not incremental. It is a different category entirely.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══ COMPARISON TABLE ═══ -->
+    <section class="pb-20 px-6 lg:px-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="eval-table-wrap reveal">
+                <table class="eval-table">
+                    <thead>
+                        <tr>
+                            <th class="eval-th-feature">Feature</th>
+                            <th class="eval-th-karbon">
+                                <span class="eval-brand">Karbon</span>
+                                <span class="eval-price">from $59/user/month</span>
+                            </th>
+                            <th class="eval-th-vcp">
+                                <span class="eval-brand" style="color:#c9a84c;">VCPility</span>
+                                <span class="eval-price" style="color:#2eb8a0;">from $300/month flat</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="eval-feature">Practice / Workflow Management</td>
+                            <td class="eval-karbon"><span class="eval-check">&#10003;</span> Full</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Full — plus client portal & e-signatures</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">CRM (Contacts, Pipeline, Notes)</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Basic only</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Full CRM with automations</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Client Portal</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Limited (magic links only)</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Branded portal, documents, e-signatures</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Centralised Inbox (email + SMS + social)</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Email only</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Email, SMS, WhatsApp, social unified</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">AI Automation & Workflows</td>
+                            <td class="eval-karbon"><span class="eval-check">&#10003;</span> Internal only — extra cost for advanced</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Full + Custom AI workflows included</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">AI Voice Agent / Virtual Number</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Add-on from $100/month</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Practice Website (built for you)</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Premium Astro + Vercel (Elevate+)</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">SEO & AEO Optimisation</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Managed monthly (Elevate+)</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Social Media Management</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Weekly/daily managed (Elevate+)</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Lead Generation & Campaigns</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Fully managed (Elevate+)</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Google Business Profile Management</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Managed monthly (Elevate+)</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Reputation Management</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Strategy + responses managed</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Paid Campaign Management (Google/Meta)</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Add-on from $300/month</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Dedicated Australian Account Manager</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Not available</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Included from Elevate plan</td>
+                        </tr>
+                        <tr class="eval-highlight-row">
+                            <td class="eval-feature">Pricing Model</td>
+                            <td class="eval-karbon">
+                                <span style="color:#ff6b6b;">Per-user: $59–$99/user/month</span><br>
+                                <span style="color:var(--text-muted); font-size:0.8rem;">5 users = $295–$495/month</span><br>
+                                <span style="color:var(--text-muted); font-size:0.8rem;">+ hidden add-on fees</span>
+                            </td>
+                            <td class="eval-vcp">
+                                <span style="color:#2eb8a0;">Flat fee from $300/month</span><br>
+                                <span style="color:var(--text-muted); font-size:0.8rem;">5 users included</span><br>
+                                <span style="color:var(--text-muted); font-size:0.8rem;">$30/user/month after 5</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Ecommerce / Payments</td>
+                            <td class="eval-karbon"><span class="eval-check">&#10003;</span> Built-in billing</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Stripe & GoCardless integrated</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Mobile App</td>
+                            <td class="eval-karbon"><span class="eval-check">&#10003;</span> iOS & Android</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> iOS & Android</td>
+                        </tr>
+                        <tr>
+                            <td class="eval-feature">Australian-Based Support</td>
+                            <td class="eval-karbon"><span class="eval-x">&#10005;</span> Global support team</td>
+                            <td class="eval-vcp"><span class="eval-check eval-check-gold">&#10003;</span> Australian team, business hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="text-center mt-6 text-xs reveal" style="color:var(--text-muted); opacity:0.6;">
+                Karbon pricing based on published rates at karbonhq.com. VCPility pricing as per plans above. Karbon is a registered trademark of Karbon Inc. Comparison is provided for informational purposes.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══ PRICING COMPARISON BLOCK ═══ -->
+    <section class="pb-28 px-6 lg:px-10">
+        <div class="max-w-4xl mx-auto">
+
+            <div class="text-center mb-14 reveal">
+                <h2 class="syne font-bold leading-tight mb-6" style="font-size:clamp(2rem,4.5vw,3.4rem); color:var(--text-bright);">
+                    More capability.<br><span style="color:#ff6b6b;">Less than Karbon</span> costs.
+                </h2>
+                <p class="text-base lg:text-lg leading-relaxed max-w-3xl mx-auto" style="color:var(--text-muted);">
+                    Start lean and self-manage, or hand it over to a dedicated Australian team. Every plan runs on the same powerful custom-built CRM — what changes is who does the work. Unlike <strong style="color:#ff6b6b;">Karbon's punishing per-user model</strong>, VCPility gives you <strong style="color:var(--text-bright); text-decoration:underline;">flat-fee pricing</strong> so your costs stay predictable as your team grows.
+                </p>
+            </div>
+
+            <!-- Plan Type Toggle -->
+            <div class="flex justify-center gap-4 mb-10 reveal">
+                <button class="eval-plan-tab active" data-tab="managed">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline-block mr-1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Managed — We Run It for You
+                </button>
+                <button class="eval-plan-tab" data-tab="diy">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline-block mr-1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    DIY — You Run the Platform
+                </button>
+            </div>
+
+            <!-- Managed Content (VCPility) -->
+            <div id="panel-managed" class="eval-panel">
+                <div class="eval-compare-box reveal">
+                    <div class="eval-compare-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="inline-block mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        VCPILITY MANAGED — WHAT YOU GET
+                    </div>
+                    <div class="p-6 lg:p-8">
+                        <div class="eval-price-card eval-price-vcp">
+                            <p class="eval-price-label"><span class="eval-check eval-check-gold" style="font-size:0.9rem;">&#10003;</span> VCPILITY — 5 USERS</p>
+                            <p class="eval-price-amount" style="color:#2eb8a0;">From $300<span class="eval-price-per">/month</span></p>
+                            <p class="eval-price-desc" style="margin-bottom:1.2rem;">Full CRM + website + AI automation + managed marketing team + lead generation — flat fee</p>
+                            <div class="eval-managed-features">
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Full Practice & Workflow Management + client portal & e-signatures</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Full CRM with automations</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Branded portal, documents, e-signatures</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Email, SMS, WhatsApp, social unified inbox</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Full + Custom AI workflows included</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> AI Voice Agent — add-on from $100/month</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Premium Astro + Vercel website (Elevate+)</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Managed SEO & AEO monthly (Elevate+)</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Weekly/daily social media management (Elevate+)</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Fully managed lead generation (Elevate+)</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Google Business Profile managed monthly</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Reputation strategy + responses managed</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Paid campaigns (Google/Meta) — add-on from $300/month</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Dedicated Australian Account Manager (Elevate+)</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Stripe & GoCardless integrated payments</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> iOS & Android mobile app</div>
+                                <div class="eval-managed-item"><span class="eval-check eval-check-gold">&#10003;</span> Australian support team, business hours</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 lg:px-8 pb-6 lg:pb-8">
+                        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">
+                            <strong style="color:var(--text-bright);">VCPility replaces your workflow tool and your entire marketing stack — for a single flat fee.</strong> 5 users included. $30/user/month after 5.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIY Content (Karbon comparison) -->
+            <div id="panel-diy" class="eval-panel" style="display:none;">
+                <div class="eval-compare-box reveal">
+                    <div class="eval-compare-header" style="color:#ff6b6b;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" class="inline-block mr-2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        WHAT KARBON ACTUALLY GIVES YOU
+                    </div>
+                    <div class="p-6 lg:p-8">
+                        <div class="eval-price-card eval-price-karbon">
+                            <p class="eval-price-label"><span class="eval-x" style="font-size:0.9rem;">&#10005;</span> KARBON — 5 USERS</p>
+                            <p class="eval-price-amount" style="color:#ff6b6b;">$295-$495<span class="eval-price-per">/month</span></p>
+                            <p class="eval-price-desc" style="margin-bottom:1.2rem;">Software only &middot; No managed service &middot; No website &middot; No marketing &middot; Hidden add-on fees for reporting & eSignature</p>
+                            <div class="eval-managed-features">
+                                <div class="eval-managed-item"><span class="eval-check">&#10003;</span> Practice / Workflow Management</div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">Basic CRM only</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">Limited client portal (magic links only)</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">Email only inbox — no SMS, social, or WhatsApp</span></div>
+                                <div class="eval-managed-item"><span class="eval-check">&#10003;</span> Internal AI only — extra cost for advanced</div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No AI Voice Agent</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No practice website</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No SEO or AEO</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No social media management</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No lead generation</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No Google Business Profile management</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No reputation management</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No paid campaign management</span></div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">No dedicated account manager</span></div>
+                                <div class="eval-managed-item"><span class="eval-check">&#10003;</span> Built-in billing</div>
+                                <div class="eval-managed-item"><span class="eval-check">&#10003;</span> iOS & Android</div>
+                                <div class="eval-managed-item"><span class="eval-x">&#10005;</span> <span style="color:var(--text-muted);">Global support only — no Australian team</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 lg:px-8 pb-6 lg:pb-8">
+                        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">
+                            <strong style="color:#ff6b6b;">Karbon</strong> charges $59–$99/user/month with additional fees for advanced reporting, eSignature credits, and email insights. <strong style="color:var(--text-bright);">You still need to buy, configure, and manage your website, marketing, lead gen, and reputation tools separately.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-14 reveal">
+                <a href="/demo" class="btn-primary px-8 py-4 rounded-[3px] text-base inline-block">See It Applied to Your Practice →</a>
+                <p class="mt-4 text-xs" style="color:var(--text-muted);">No lock-in contracts. Operational within days.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* ═══ TABLE WRAPPER ═══ */
+    .eval-table-wrap {
+        border-radius: 12px;
+        border: 1px solid rgba(201,168,76,0.25);
+        background: #0b0f14;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+
+    /* ═══ TABLE ═══ */
+    .eval-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+    }
+
+    .eval-table thead {
+        background: #111820;
+    }
+    .eval-th-feature,
+    .eval-th-karbon,
+    .eval-th-vcp {
+        padding: 1.4rem 1.5rem;
+        text-align: center;
+        font-weight: 600;
+        vertical-align: bottom;
+        border-bottom: 2px solid rgba(201,168,76,0.3);
+    }
+    .eval-th-feature {
+        text-align: left;
+        color: #c9a84c;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        width: 35%;
+    }
+    .eval-th-karbon, .eval-th-vcp {
+        width: 32.5%;
+    }
+    .eval-th-vcp {
+        background: rgba(201,168,76,0.08);
+    }
+    .eval-brand {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #f0ead6;
+        margin-bottom: 0.3rem;
+    }
+    .eval-price {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: #7a8599;
+    }
+
+    /* ═══ TABLE BODY ═══ */
+    .eval-table tbody tr {
+        border-bottom: 1px solid rgba(201,168,76,0.1);
+        transition: background 0.2s;
+    }
+    .eval-table tbody tr:nth-child(even) {
+        background: rgba(255,255,255,0.015);
+    }
+    .eval-table tbody tr:hover {
+        background: rgba(201,168,76,0.06);
+    }
+    .eval-feature {
+        padding: 1.1rem 1.5rem;
+        font-weight: 600;
+        color: #f0ead6;
+        font-size: 0.88rem;
+    }
+    .eval-karbon,
+    .eval-vcp {
+        padding: 1.1rem 1.5rem;
+        text-align: center;
+        color: #8b95a5;
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+    .eval-vcp {
+        color: #2eb8a0;
+        font-weight: 600;
+        background: rgba(201,168,76,0.03);
+    }
+    .eval-check {
+        color: #2eb8a0;
+        margin-right: 0.4rem;
+        font-weight: 700;
+    }
+    .eval-check-gold {
+        color: #c9a84c;
+    }
+    .eval-x {
+        color: #ff6b6b;
+        margin-right: 0.4rem;
+        font-weight: 700;
+    }
+    .eval-highlight-row {
+        background: rgba(201,168,76,0.07) !important;
+        border-bottom: 2px solid rgba(201,168,76,0.2) !important;
+    }
+    .eval-highlight-row .eval-feature {
+        color: #c9a84c;
+        font-weight: 700;
+    }
+
+    /* ═══ PLAN TABS ═══ */
+    .eval-plan-tab {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.7rem 1.4rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        border: 1px solid rgba(255,255,255,0.1);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .eval-plan-tab:hover {
+        border-color: rgba(201,168,76,0.3);
+        color: var(--text-bright);
+    }
+    .eval-plan-tab.active {
+        border-color: rgba(201,168,76,0.5);
+        background: rgba(201,168,76,0.08);
+        color: #c9a84c;
+    }
+
+    /* ═══ COMPARE BOX ═══ */
+    .eval-compare-box {
+        border-radius: 12px;
+        border: 1px solid rgba(201,168,76,0.2);
+        background: rgba(11,15,20,0.6);
+        overflow: hidden;
+    }
+    .eval-compare-header {
+        padding: 1rem 1.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #c9a84c;
+        background: rgba(201,168,76,0.06);
+        border-bottom: 1px solid rgba(201,168,76,0.12);
+        display: flex;
+        align-items: center;
+    }
+
+    /* ═══ PRICE CARDS ═══ */
+    .eval-price-card {
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255,255,255,0.02);
+    }
+    .eval-price-karbon {
+        border-color: rgba(255,107,107,0.15);
+        background: rgba(255,107,107,0.03);
+    }
+    .eval-price-vcp {
+        border-color: rgba(201,168,76,0.2);
+        background: rgba(201,168,76,0.04);
+    }
+    .eval-price-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 0.6rem;
+    }
+    .eval-price-amount {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 0.6rem;
+    }
+    .eval-price-per {
+        font-size: 0.9rem;
+        font-weight: 400;
+        opacity: 0.7;
+    }
+    .eval-price-desc {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        color: var(--text-muted);
+    }
+
+    /* ═══ MANAGED FEATURES LIST ═══ */
+    .eval-managed-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem 1.5rem;
+    }
+    .eval-managed-item {
+        font-size: 0.82rem;
+        color: var(--text-bright);
+        padding: 0.4rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        line-height: 1.4;
+    }
+    .eval-panel {
+        transition: opacity 0.3s ease;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+        .eval-th-feature { display: none; }
+        .eval-table {
+            display: block;
+        }
+        .eval-table thead,
+        .eval-table tbody,
+        .eval-table tr,
+        .eval-table td,
+        .eval-table th {
+            display: block;
+        }
+        .eval-table tr {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .eval-feature {
+            padding: 0.5rem 0 0.3rem;
+            font-size: 0.9rem;
+        }
+        .eval-karbon, .eval-vcp {
+            text-align: left;
+            padding: 0.3rem 0;
+        }
+        .eval-th-karbon, .eval-th-vcp {
+            text-align: left;
+            padding: 0.8rem 1rem;
+        }
+
+        .eval-plan-tab {
+            font-size: 0.65rem;
+            padding: 0.6rem 1rem;
+        }
+        .eval-managed-features {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.eval-plan-tab');
+        const panelManaged = document.getElementById('panel-managed');
+        const panelDiy = document.getElementById('panel-diy');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const selected = tab.getAttribute('data-tab');
+                if (selected === 'managed') {
+                    panelManaged.style.display = 'block';
+                    panelDiy.style.display = 'none';
+                } else {
+                    panelManaged.style.display = 'none';
+                    panelDiy.style.display = 'block';
+                }
+            });
+        });
+    });
+</script>

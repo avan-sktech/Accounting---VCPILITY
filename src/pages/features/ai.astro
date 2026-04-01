@@ -1,0 +1,341 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="AI Systems | VCPility — Accounting OS">
+    <Nav />
+    <div class="pt-28 pb-20" style="background:#0d1117;">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+            <!-- AEO Section -->
+            <div class="grid lg:grid-cols-[1.1fr_1fr] gap-14 items-start mb-24">
+                <div>
+                    <p class="section-label mb-4" style="color:#2dd4bf;">The Next Frontier</p>
+                    <h2 class="syne font-bold leading-tight mb-6" style="color:#f0ead6; font-size:clamp(2rem,4vw,2.8rem);">
+                        Answer Engine Optimisation — <em style="font-style:italic; color:#2dd4bf;">get recommended by AI</em>.
+                    </h2>
+                    <p class="text-base leading-relaxed mb-4" style="color:#9da8b8;">
+                        Clients are no longer just searching Google. They are asking ChatGPT, Gemini, and Perplexity for recommendations. <strong style="color:#f0ead6;">Answer Engine Optimisation (AEO)</strong> ensures your firm appears in AI-generated answers — not just traditional search results.
+                    </p>
+                    <p class="text-base leading-relaxed mb-6" style="color:#9da8b8;">
+                        VCPility is one of the only platforms in Australia that delivers AEO alongside traditional SEO for accounting firms.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="ai-pill">🤖 ChatGPT</span>
+                        <span class="ai-pill">✨ Google Gemini</span>
+                        <span class="ai-pill">🟡 Perplexity</span>
+                        <span class="ai-pill">📱 Google Search (SGE)</span>
+                    </div>
+                </div>
+
+                <!-- Right: AI Neural Visualization -->
+                <div class="ai-viz-wrap">
+                    <canvas id="ai-neural-canvas" width="480" height="420"></canvas>
+                    <div class="ai-viz-badge ai-viz-badge-tr">
+                        <span class="ai-viz-badge-dot"></span>
+                        <strong>360° client view</strong>
+                        <span style="font-size:0.65rem; color:rgba(45,212,191,0.5); display:block;">Status : online</span>
+                    </div>
+                    <div class="ai-viz-badge ai-viz-badge-bl">
+                        <strong>Real-Time Updates</strong>
+                        <span style="font-size:0.65rem; color:rgba(45,212,191,0.5); display:block;">Last sync 5 mins ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border:none; height:1px; background:linear-gradient(to right, transparent, rgba(45,212,191,0.3), transparent); margin-bottom:4rem;">
+
+            <!-- AI Automation Section -->
+            <div class="text-center mb-14">
+                <p class="section-label mb-4" style="color:#c9a84c;">What VCPility Automates</p>
+                <h2 class="syne font-bold leading-tight mb-4" style="color:#f0ead6; font-size:clamp(1.8rem,3.5vw,2.5rem);">
+                    Four AI systems that work <em style="font-style:italic; color:#c9a84c;">while your team rests</em>.
+                </h2>
+                <p style="color:#9da8b8; max-width:640px; margin:0 auto;">Not a replacement for your people. A multiplier. VCPility handles the repetitive, non-billable work automatically — 24 hours a day, 7 days a week.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="ai-card">
+                    <h3 class="ai-card-title">🤖 AI Voice Agent</h3>
+                    <p class="ai-card-desc">Answers inbound calls with a natural, human-like voice. Handles FAQs, books appointments, and routes complex queries — without your team lifting a finger.</p>
+                    <ul class="ai-card-list">
+                        <li>✓ Answers calls 24/7 under your firm's name</li>
+                        <li>✓ Schedules appointments directly into your calendar</li>
+                        <li>✓ Integrates seamlessly with your CRM</li>
+                    </ul>
+                </div>
+                <div class="ai-card">
+                    <h3 class="ai-card-title">💬 AI Chatbot</h3>
+                    <p class="ai-card-desc">Responds instantly to website visitors, social media enquiries, and Google Business Profile questions — qualifying leads and answering queries in real time.</p>
+                    <ul class="ai-card-list">
+                        <li>✓ Website, Facebook, Instagram — all channels</li>
+                        <li>✓ Qualifies leads before they reach your team</li>
+                        <li>✓ Responds to Google reviews automatically</li>
+                    </ul>
+                </div>
+                <div class="ai-card">
+                    <h3 class="ai-card-title">🔔 Automated Follow-Ups</h3>
+                    <p class="ai-card-desc">Every client gets polite, persistent reminders via SMS, email, and WhatsApp — automatically. From document collection to appointment confirmations.</p>
+                    <ul class="ai-card-list">
+                        <li>✓ Escalating reminder sequences</li>
+                        <li>✓ Sent under your firm's brand</li>
+                        <li>✓ Reactivation campaigns for dormant clients</li>
+                    </ul>
+                </div>
+                <div class="ai-card">
+                    <h3 class="ai-card-title">📣 Managed Marketing</h3>
+                    <p class="ai-card-desc">SEO, social media, content, lead generation — done for you. No marketing hire needed. Your practice grows while your team stays focused on compliance.</p>
+                    <ul class="ai-card-list">
+                        <li>✓ SEO and Answer Engine Optimisation (AEO)</li>
+                        <li>✓ Social media content created and scheduled</li>
+                        <li>✓ StoryBrand website that converts visitors</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <Footer />
+</Layout>
+
+<style>
+    .ai-pill {
+        display: inline-flex; align-items: center; gap: 0.3rem;
+        padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600;
+        color: #2dd4bf; background: rgba(45,212,191,0.08);
+        border: 1px solid rgba(45,212,191,0.2); border-radius: 20px;
+    }
+    .aeo-bubble {
+        padding: 1.2rem 1.4rem; border-radius: 14px; font-size: 0.9rem; line-height: 1.6;
+    }
+    .aeo-bubble-user {
+        background: rgba(240,234,214,0.06); border: 1px solid rgba(240,234,214,0.1);
+        color: #f0ead6; font-style: italic; margin-left: 2rem;
+    }
+    .aeo-bubble-ai {
+        background: rgba(45,212,191,0.06); border: 1px solid rgba(45,212,191,0.15);
+        color: #9da8b8;
+    }
+    .aeo-source {
+        display: block; margin-top: 0.6rem; font-size: 0.72rem;
+        color: rgba(45,212,191,0.5); font-style: italic;
+    }
+    .ai-card {
+        background: rgba(240,234,214,0.03); border: 1px solid rgba(240,234,214,0.08);
+        border-radius: 14px; padding: 1.8rem;
+        transition: border-color 0.3s;
+    }
+    .ai-card:hover { border-color: rgba(201,168,76,0.25); }
+    .ai-card-title {
+        font-family: 'Syne', sans-serif; font-size: 1.1rem;
+        font-weight: 700; color: #f0ead6; margin-bottom: 0.6rem;
+    }
+    .ai-card-desc {
+        font-size: 0.85rem; color: #9da8b8; line-height: 1.6; margin-bottom: 1rem;
+    }
+    .ai-card-list { list-style: none; padding: 0; }
+    .ai-card-list li {
+        font-size: 0.82rem; color: rgba(240,234,214,0.6);
+        padding: 0.25rem 0; padding-left: 0;
+    }
+
+    /* AI Neural Visualization */
+    .ai-viz-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #ai-neural-canvas {
+        width: 100%; max-width: 480px; height: auto;
+        border-radius: 16px;
+    }
+    .ai-viz-badge {
+        position: absolute;
+        background: rgba(13,17,23,0.85);
+        border: 1px solid rgba(45,212,191,0.2);
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 0.75rem;
+        color: #f0ead6;
+        backdrop-filter: blur(8px);
+        line-height: 1.4;
+    }
+    .ai-viz-badge-tr { top: 12%; right: 0; }
+    .ai-viz-badge-bl { bottom: 18%; left: 0; }
+    .ai-viz-badge-dot {
+        display: inline-block; width: 6px; height: 6px;
+        border-radius: 50%; background: #2dd4bf;
+        margin-right: 6px; vertical-align: middle;
+        box-shadow: 0 0 8px rgba(45,212,191,0.6);
+    }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+    var canvas = document.getElementById('ai-neural-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    var cx = W / 2, cy = H / 2;
+
+    // Neural network nodes
+    var nodes = [];
+    var connections = [];
+    var pulses = [];
+    var time = 0;
+
+    // Create layered network structure
+    var layers = [
+        { count: 3, x: 0.15, color: 'rgba(45,212,191,' },   // Input
+        { count: 5, x: 0.35, color: 'rgba(99,102,241,' },    // Hidden 1
+        { count: 6, x: 0.55, color: 'rgba(201,168,76,' },    // Hidden 2
+        { count: 4, x: 0.75, color: 'rgba(14,165,233,' },    // Hidden 3
+        { count: 2, x: 0.9, color: 'rgba(45,212,191,' }      // Output
+    ];
+
+    // Labels for nodes
+    var inputLabels = ['SEO', 'AEO', 'CRM'];
+    var outputLabels = ['AI', '✓'];
+
+    layers.forEach(function(layer, li) {
+        for (var i = 0; i < layer.count; i++) {
+            var spacing = H / (layer.count + 1);
+            nodes.push({
+                x: layer.x * W,
+                y: spacing * (i + 1),
+                r: li === 0 || li === layers.length - 1 ? 18 : 8 + Math.random() * 6,
+                color: layer.color,
+                layer: li,
+                idx: i,
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+    });
+
+    // Connect adjacent layers
+    var offset = 0;
+    for (var li = 0; li < layers.length - 1; li++) {
+        var nextOffset = offset + layers[li].count;
+        for (var a = offset; a < offset + layers[li].count; a++) {
+            for (var b = nextOffset; b < nextOffset + layers[li + 1].count; b++) {
+                if (Math.random() > 0.3) {
+                    connections.push({ from: a, to: b, opacity: 0.06 + Math.random() * 0.08 });
+                }
+            }
+        }
+        offset = nextOffset;
+    }
+
+    // Concentric rings (radar feel)
+    function drawRings() {
+        for (var r = 60; r < 220; r += 50) {
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(45,212,191,0.04)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+    }
+
+    // Scanning line
+    function drawScan() {
+        var angle = time * 0.3;
+        var len = 200;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(angle) * len, cy + Math.sin(angle) * len);
+        var grad = ctx.createLinearGradient(cx, cy, cx + Math.cos(angle) * len, cy + Math.sin(angle) * len);
+        grad.addColorStop(0, 'rgba(45,212,191,0.15)');
+        grad.addColorStop(1, 'rgba(45,212,191,0)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+
+    // Spawn pulse
+    function spawnPulse() {
+        if (connections.length === 0) return;
+        var c = connections[Math.floor(Math.random() * connections.length)];
+        pulses.push({ from: c.from, to: c.to, t: 0, speed: 0.015 + Math.random() * 0.01 });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        time += 0.016;
+
+        drawRings();
+        drawScan();
+
+        // Draw connections
+        connections.forEach(function(c) {
+            var a = nodes[c.from], b = nodes[c.to];
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = 'rgba(45,212,191,' + c.opacity + ')';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+        });
+
+        // Draw pulses
+        for (var p = pulses.length - 1; p >= 0; p--) {
+            var pulse = pulses[p];
+            pulse.t += pulse.speed;
+            if (pulse.t > 1) { pulses.splice(p, 1); continue; }
+            var a = nodes[pulse.from], b = nodes[pulse.to];
+            var px = a.x + (b.x - a.x) * pulse.t;
+            var py = a.y + (b.y - a.y) * pulse.t;
+            ctx.beginPath();
+            ctx.arc(px, py, 3, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(45,212,191,' + (0.8 * (1 - pulse.t)) + ')';
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(px, py, 8, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(45,212,191,' + (0.15 * (1 - pulse.t)) + ')';
+            ctx.fill();
+        }
+
+        // Draw nodes
+        nodes.forEach(function(n, i) {
+            var pulse = 0.7 + 0.3 * Math.sin(time * 2 + n.phase);
+            // Glow
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * 2, 0, Math.PI * 2);
+            ctx.fillStyle = n.color + (0.04 * pulse) + ')';
+            ctx.fill();
+            // Node
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = n.color + (0.15 * pulse) + ')';
+            ctx.strokeStyle = n.color + (0.4 * pulse) + ')';
+            ctx.lineWidth = 1.5;
+            ctx.fill();
+            ctx.stroke();
+
+            // Labels for input/output nodes
+            if (n.layer === 0 && inputLabels[n.idx]) {
+                ctx.fillStyle = 'rgba(240,234,214,0.7)';
+                ctx.font = '600 10px "Space Grotesk", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(inputLabels[n.idx], n.x, n.y + 3.5);
+            }
+            if (n.layer === layers.length - 1 && outputLabels[n.idx]) {
+                ctx.fillStyle = 'rgba(240,234,214,0.8)';
+                ctx.font = '700 12px "Space Grotesk", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(outputLabels[n.idx], n.x, n.y + 4);
+            }
+        });
+
+        // Randomly fire pulses
+        if (Math.random() < 0.08) spawnPulse();
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+});
+</script>

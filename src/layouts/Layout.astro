@@ -1,0 +1,158 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'VCPility | Accounting OS — Built for Australian Accountants' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="mesh-bg">
+    <slot />
+
+    <!-- Global client-side scripts -->
+    <script>
+    // Scroll reveal (IntersectionObserver) — replaces GSAP
+    function initRevealObserver() {
+        const revealEls = document.querySelectorAll('.reveal, .gsap-panel, .gsap-label, .gsap-heading, .gsap-rule, .gsap-divider');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '50px 0px 0px 0px' });
+
+        requestAnimationFrame(() => {
+            revealEls.forEach(el => observer.observe(el));
+        });
+    }
+
+    // Count-up animation
+    function initCountUp() {
+        const counters = document.querySelectorAll('.count-up');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target as HTMLElement;
+                    const target = parseFloat(el.dataset.target!);
+                    const suffix = el.dataset.suffix || '';
+                    const decimals = el.dataset.target!.includes('.') ? el.dataset.target!.split('.')[1].length : 0;
+                    const duration = 1500;
+                    const start = performance.now();
+                    function tick(now: number) {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = (target * eased).toFixed(decimals) + suffix;
+                        if (progress < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(el => counterObserver.observe(el));
+    }
+
+    // Pricing toggle
+    function initPricingToggle() {
+        document.querySelectorAll('.pricing-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const features = btn.nextElementSibling;
+                btn.classList.toggle('open');
+                features?.classList.toggle('open');
+            });
+        });
+    }
+
+    // Mobile timeline tap-to-reveal
+    function initMobileTimeline() {
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.timeline-node').forEach(node => {
+                node.addEventListener('click', () => {
+                    const wasActive = node.classList.contains('active');
+                    document.querySelectorAll('.timeline-node').forEach(n => n.classList.remove('active'));
+                    if (!wasActive) node.classList.add('active');
+                });
+            });
+        }
+    }
+
+    // FAQ accordion
+    function initFAQ() {
+        document.querySelectorAll('.faq-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement?.classList.toggle('open');
+            });
+        });
+    }
+
+    // Logo Loop — smooth rAF-driven marquee
+    function initMarquee() {
+        const tracks = document.querySelectorAll('.marquee-track') as NodeListOf<HTMLElement>;
+        tracks.forEach(track => {
+            const isReverse = track.dataset.reverse === 'true';
+            const baseSpeed = parseFloat(track.dataset.speed || '0.5');
+            let offset = 0;
+            let currentSpeed = baseSpeed;
+            let targetSpeed = baseSpeed;
+            let halfWidth = 0;
+
+            const copies = parseInt(track.dataset.copies || '2');
+            function calcWidth() {
+                halfWidth = track.scrollWidth / copies;
+            }
+            calcWidth();
+            setTimeout(calcWidth, 1000);
+            setTimeout(calcWidth, 3000);
+
+            const wrap = track.parentElement!;
+            wrap.addEventListener('mouseenter', () => { targetSpeed = baseSpeed * 0.15; });
+            wrap.addEventListener('mouseleave', () => { targetSpeed = baseSpeed; });
+
+            function update() {
+                if (halfWidth === 0) { calcWidth(); }
+                currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+                offset += isReverse ? -currentSpeed : currentSpeed;
+                if (!isReverse && offset >= halfWidth) { offset -= halfWidth; }
+                if (isReverse && offset <= -halfWidth) { offset += halfWidth; }
+                track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+                requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        });
+    }
+
+    // Init all
+    document.addEventListener('DOMContentLoaded', () => {
+        initRevealObserver();
+        initCountUp();
+        initPricingToggle();
+        initMobileTimeline();
+        initFAQ();
+        initMarquee();
+    });
+
+    // Also run on astro page navigations
+    document.addEventListener('astro:page-load', () => {
+        initRevealObserver();
+        initCountUp();
+        initPricingToggle();
+        initMobileTimeline();
+        initFAQ();
+        initMarquee();
+    });
+    </script>
+</body>
+</html>
+
+<style is:global>
+    @import '../styles/global.css';
+</style>

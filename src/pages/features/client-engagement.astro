@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Client Engagement | VCPility — Accounting OS">
+    <Nav />
+    <div class="pt-28 pb-20" style="background:#0d1117;">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+            <div class="text-center mb-16">
+                <p class="section-label mb-4" style="color:#c9a84c;">What VCPility Does</p>
+                <h2 class="syne font-bold leading-tight mb-4" style="color:#f0ead6; font-size:clamp(2rem,4vw,2.8rem);">
+                    Automate the engagement that <em style="font-style:italic; color:#c9a84c;">keeps clients loyal</em>.
+                </h2>
+                <p style="color:#9da8b8; max-width:680px; margin:0 auto; line-height:1.7;">Every client touchpoint — from thank-you messages to annual check-ins — runs automatically under your firm's brand.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 mb-16">
+                <div class="ce-card">
+                    <div class="ce-icon">🔔</div>
+                    <h3 class="ce-title">Automated Recall Campaigns</h3>
+                    <p class="ce-desc">Clients who have not engaged in 90+ days get a tailored reactivation sequence — email, SMS, WhatsApp — inviting them back for a review or advisory session.</p>
+                </div>
+                <div class="ce-card">
+                    <div class="ce-icon">💬</div>
+                    <h3 class="ce-title">Proactive Client Check-Ins</h3>
+                    <p class="ce-desc">Automated messages at key moments — post-lodgement thank you, quarterly BAS reminders, EOFY preparation alerts, birthday greetings — all personalised, all automatic.</p>
+                </div>
+                <div class="ce-card">
+                    <div class="ce-icon">⭐</div>
+                    <h3 class="ce-title">Review &amp; Referral Engine</h3>
+                    <p class="ce-desc">After every positive interaction, VCPility automatically requests a Google review. Happy clients become your best acquisition channel — on autopilot.</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="/demo" class="btn-primary px-10 py-4 rounded-[3px] text-base inline-block">Automate Client Engagement →</a>
+            </div>
+
+        </div>
+    </div>
+    <Footer />
+</Layout>
+
+<style>
+    .ce-card {
+        background: rgba(240,234,214,0.03); border: 1px solid rgba(240,234,214,0.08);
+        border-radius: 14px; padding: 2rem; transition: border-color 0.3s;
+    }
+    .ce-card:hover { border-color: rgba(201,168,76,0.25); }
+    .ce-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .ce-title {
+        font-family: 'Syne', sans-serif; font-size: 1.1rem;
+        font-weight: 700; color: #f0ead6; margin-bottom: 0.6rem;
+    }
+    .ce-desc {
+        font-size: 0.85rem; color: #9da8b8; line-height: 1.6;
+    }
+</style>

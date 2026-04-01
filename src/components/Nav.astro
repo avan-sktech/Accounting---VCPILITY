@@ -1,0 +1,30 @@
+<!-- ═══ NAV ═══ -->
+<nav class="fixed w-full z-50" style="background:rgba(10,14,20,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.08);">
+    <div class="w-full px-4 lg:px-8">
+        <div class="flex justify-between items-center h-[72px]">
+            <!-- Logo + ACCOUNTING watermark -->
+            <div class="flex items-center gap-3 relative">
+                <span class="watermark-text absolute top-1/2 -translate-y-1/2 font-bold uppercase pointer-events-none select-none" style="font-family:'Fraunces',serif; font-size:2.8rem; white-space:nowrap; left:140px; letter-spacing:0.06em; z-index:0;"><span class="blur-letter" style="animation-delay:0.3s">A</span><span class="blur-letter" style="animation-delay:0.45s">C</span><span class="blur-letter" style="animation-delay:0.6s">C</span><span class="blur-letter" style="animation-delay:0.75s">O</span><span class="blur-letter" style="animation-delay:0.9s">U</span><span class="blur-letter" style="animation-delay:1.05s">N</span><span class="blur-letter" style="animation-delay:1.2s">T</span><span class="blur-letter" style="animation-delay:1.35s">I</span><span class="blur-letter" style="animation-delay:1.5s">N</span><span class="blur-letter" style="animation-delay:1.65s">G</span></span>
+                <a href="/" style="position:relative; z-index:1; margin-right:20px;"><img src="/VCPility_logo.png" alt="VCPility" style="height:32px;width:auto;"></a>
+            </div>
+
+            <!-- Nav links — identical on all screens -->
+            <div class="flex items-center gap-8">
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn text-sm font-medium transition-colors" style="color:rgba(240,234,214,0.7)">
+                        Features <svg class="nav-dd-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="/features" class="nav-dd-item">Overview</a>
+                        <a href="/features/ai" class="nav-dd-item">AI</a>
+                        <a href="/features/digital-presence" class="nav-dd-item">Digital Presence</a>
+                        <a href="/features/client-engagement" class="nav-dd-item">Client Engagement</a>
+                    </div>
+                </div>
+                <a href="/evaluate" class="text-sm font-medium hover:text-[var(--gold-light)] transition-colors" style="color:rgba(240,234,214,0.7)">Evaluate</a>
+                <a href="/pricing" class="text-sm font-medium hover:text-[var(--gold-light)] transition-colors" style="color:rgba(240,234,214,0.7)">Pricing</a>
+                <a href="/demo" class="btn-primary px-5 py-2.5 rounded-[3px] text-sm">Book a Demo</a>
+            </div>
+        </div>
+    </div>
+</nav>

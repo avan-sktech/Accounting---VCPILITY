@@ -1,0 +1,156 @@
+<!-- ═══ TRUST COMPACT — Data Security Commitment ═══ -->
+<section class="trust-compact">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+        <div class="trust-inner">
+            <!-- Shield + Title (left) -->
+            <div class="trust-left">
+                <div class="trust-shield">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
+                <span class="trust-title">Your data. Our commitment.</span>
+            </div>
+
+            <!-- Divider -->
+            <div class="trust-pipe"></div>
+
+            <!-- Shuffle text (right) -->
+            <div class="trust-right">
+                <span class="trust-check">✓</span>
+                <span class="shuffle-text" id="trust-shuffle" data-text="AUSTRALIAN-HOSTED INFRASTRUCTURE">AUSTRALIAN-HOSTED INFRASTRUCTURE</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .trust-compact {
+        background: #0a0e14;
+        border-top: 1px solid rgba(201,168,76,0.12);
+        border-bottom: 1px solid rgba(201,168,76,0.08);
+        padding: 0.9rem 0;
+    }
+    .trust-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .trust-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+    }
+    .trust-shield {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(201,168,76,0.06);
+        border: 1.5px solid rgba(201,168,76,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .trust-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #c9a84c;
+        line-height: 1.2;
+    }
+    .trust-pipe {
+        width: 1px;
+        height: 28px;
+        background: rgba(201,168,76,0.2);
+        flex-shrink: 0;
+    }
+    .trust-right {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .trust-check {
+        color: #c9a84c;
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+    .shuffle-text {
+        display: inline-block;
+        font-family: 'Syne', monospace;
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(240,234,214,0.7);
+    }
+
+    @media (max-width: 768px) {
+        .trust-inner {
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .trust-pipe {
+            width: 40px;
+            height: 1px;
+        }
+    }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('trust-shuffle');
+    if (!el) return;
+
+    var finalText = 'AUSTRALIAN-HOSTED INFRASTRUCTURE';
+    var charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var scrambleCycles = 8;
+    var cycleMs = 40;
+    var staggerMs = 30;
+
+    function scrambleIn() {
+        el.textContent = finalText.replace(/./g, function(c) {
+            return c === ' ' ? ' ' : charset[Math.floor(Math.random() * charset.length)];
+        });
+
+        for (var i = 0; i < finalText.length; i++) {
+            (function(idx) {
+                var resolveAt = scrambleCycles + idx;
+                var tick = 0;
+                var iv = setInterval(function() {
+                    tick++;
+                    if (tick >= resolveAt) {
+                        clearInterval(iv);
+                        var current = el.textContent.split('');
+                        current[idx] = finalText[idx];
+                        el.textContent = current.join('');
+                    } else {
+                        var current = el.textContent.split('');
+                        if (finalText[idx] !== ' ') {
+                            current[idx] = charset[Math.floor(Math.random() * charset.length)];
+                        }
+                        el.textContent = current.join('');
+                    }
+                }, cycleMs + Math.random() * staggerMs);
+            })(i);
+        }
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+            scrambleIn();
+            observer.disconnect();
+        }
+    }, { threshold: 0.1 });
+    observer.observe(el);
+
+    el.parentElement.addEventListener('mouseenter', function() {
+        scrambleIn();
+    });
+});
+</script>

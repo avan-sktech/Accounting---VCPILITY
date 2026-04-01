@@ -1,0 +1,112 @@
+<!-- ═══ DEMO FORM — "The Invitation" ═══ -->
+<section id="demo" class="demo-section relative overflow-hidden">
+    <!-- Skyline background -->
+    <div class="demo-bg"></div>
+    <div class="demo-bg-overlay"></div>
+    <div class="demo-bg-gradient"></div>
+
+    <div class="relative z-10 py-28 px-6 lg:px-10">
+    <div class="max-w-2xl mx-auto">
+        <div class="rounded-[4px] p-10 relative overflow-hidden reveal" style="background:rgba(11,15,20,0.85); border:1px solid rgba(201,168,76,0.25); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);">
+            <div class="relative">
+                <h2 class="syne text-3xl font-bold text-center mb-3" style="color:#f0ead6;">See it applied to your practice.</h2>
+                <p class="text-center mb-10 leading-relaxed" style="color:rgba(240,234,214,0.5)">Not a sales pitch. Not a demo script.<br>Your questions. Your challenges. Your practice.</p>
+                <div class="space-y-5">
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <label class="demo-label">Full Name *</label>
+                            <input type="text" placeholder="John Smith" required class="demo-input">
+                        </div>
+                        <div>
+                            <label class="demo-label">Work Email *</label>
+                            <input type="email" placeholder="john@firm.com.au" required class="demo-input">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <label class="demo-label">Firm Name *</label>
+                            <input type="text" placeholder="Smith & Partners" required class="demo-input">
+                        </div>
+                        <div>
+                            <label class="demo-label">State *</label>
+                            <select required class="demo-input">
+                                <option value="">Select</option>
+                                <option>NSW</option><option>VIC</option><option>QLD</option>
+                                <option>WA</option><option>SA</option><option>TAS</option>
+                                <option>ACT</option><option>NT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="demo-label">What's your biggest operational challenge?</label>
+                        <textarea rows="3" placeholder="e.g. EOFY workload, client follow-ups, new enquiry handling, outdated website..." class="demo-input"></textarea>
+                    </div>
+                    <button type="button" class="btn-primary w-full py-4 rounded-[3px] text-base mt-2">Request Your Consultation →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<style>
+    .demo-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    .demo-bg {
+        position: absolute;
+        inset: 0;
+        background: url('/skyline-bg.png') center center / cover no-repeat;
+        z-index: 0;
+    }
+    .demo-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(7, 10, 15, 0.7);
+        z-index: 1;
+    }
+    .demo-bg-gradient {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(to bottom, #0d1117 0%, #0d1117 5%, transparent 40%),
+            linear-gradient(to top, #0d1117 0%, #0d1117 5%, transparent 40%);
+        z-index: 2;
+    }
+    .demo-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #c9a84c;
+    }
+    .demo-input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        background: rgba(201, 168, 76, 0.08);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        border-radius: 3px;
+        color: #f0ead6;
+        font-size: 0.95rem;
+        transition: border-color 0.2s, background 0.2s;
+        position: relative;
+        z-index: 2;
+    }
+    .demo-input::placeholder {
+        color: rgba(240, 234, 214, 0.3);
+    }
+    .demo-input:focus {
+        outline: none;
+        border-color: #c9a84c;
+        background: rgba(201, 168, 76, 0.12);
+    }
+    select.demo-input option {
+        background: #0b0f14;
+        color: #f0ead6;
+    }
+</style>
+
