@@ -249,7 +249,7 @@ nav { background: var(--nav-bg); backdrop-filter: blur(24px) saturate(160%); bor
 @keyframes border-glow-spin {
     to { --glow-angle: 360deg; }
 }
-.pain-card { background: var(--ink-raised); border: none; border-radius: 6px; padding: 20px 24px; white-space: nowrap; font-size: 14px; color: var(--text-body); font-style: italic; position: relative; isolation: isolate; }
+.pain-card { background: var(--ink-raised); border: none; border-radius: 6px; padding: 20px 24px; white-space: nowrap; font-size: 14px; color: var(--text-body); font-style:normal; position: relative; isolation: isolate; }
 .pain-card::before {
     content: '';
     position: absolute;

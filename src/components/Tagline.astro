@@ -1,0 +1,86 @@
+<!-- ═══ TAGLINE — Blur Text Reveal ═══ -->
+<section class="tagline-section">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+        <h2 class="tagline-text syne" id="tagline-blur">
+            The Intelligent Practice Management for Accountants
+        </h2>
+    </div>
+</section>
+
+<style>
+    .tagline-section {
+        background: linear-gradient(180deg, #0a0a0a 0%, #0d1117 100%);
+        padding: 5rem 0 6rem;
+        text-align: center;
+    }
+    .tagline-text {
+        font-size: clamp(2rem, 4.5vw, 3.6rem);
+        font-weight: 700;
+        line-height: 1.15;
+        color: #f0ead6;
+        letter-spacing: -0.02em;
+    }
+    .tagline-char {
+        display: inline-block;
+        transition: filter 0.4s ease, opacity 0.4s ease;
+    }
+    .tagline-char.blurred {
+        filter: blur(8px);
+        opacity: 0;
+    }
+    .tagline-char.clear {
+        filter: blur(0);
+        opacity: 1;
+    }
+    /* Gold accent on key words */
+    .tagline-accent {
+        color: #c9a84c;
+    }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('tagline-blur');
+    if (!el) return;
+
+    var text = el.textContent.trim();
+    var accentWords = ['Intelligent', 'Accountants'];
+    el.innerHTML = '';
+
+    // Split into characters, preserving words
+    var words = text.split(' ');
+    words.forEach(function(word, wi) {
+        var isAccent = accentWords.indexOf(word) !== -1;
+        for (var i = 0; i < word.length; i++) {
+            var span = document.createElement('span');
+            span.className = 'tagline-char blurred';
+            if (isAccent) span.classList.add('tagline-accent');
+            span.textContent = word[i];
+            span.style.transitionDelay = (wi * 60 + i * 30) + 'ms';
+            el.appendChild(span);
+        }
+        if (wi < words.length - 1) {
+            var space = document.createElement('span');
+            space.innerHTML = '&nbsp;';
+            space.className = 'tagline-char blurred';
+            space.style.transitionDelay = (wi * 60 + word.length * 30) + 'ms';
+            el.appendChild(space);
+        }
+    });
+
+    // Trigger on scroll into view
+    var triggered = false;
+    var observer = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !triggered) {
+            triggered = true;
+            var chars = el.querySelectorAll('.tagline-char');
+            chars.forEach(function(ch) {
+                ch.classList.remove('blurred');
+                ch.classList.add('clear');
+            });
+        }
+    }, { threshold: 0.3 });
+
+    observer.observe(el);
+});
+</script>

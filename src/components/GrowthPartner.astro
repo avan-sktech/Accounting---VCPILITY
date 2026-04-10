@@ -1,23 +1,54 @@
 <!-- ═══ GROWTH PARTNER — "The Promise" ═══ -->
-<section class="py-28 px-6 lg:px-10">
-    <div class="max-w-4xl mx-auto">
-        <div class="card rounded-[4px] p-12 lg:p-16 relative overflow-hidden text-center reveal">
-            <div class="absolute -top-20 -left-20 w-72 h-72 rounded-full blur-3xl pointer-events-none" style="background:rgba(201,168,76,0.05)"></div>
-            <div class="absolute -bottom-20 -right-20 w-72 h-72 rounded-full blur-3xl pointer-events-none" style="background:rgba(201,168,76,0.05)"></div>
-            <div class="relative">
-                <p class="section-label mb-5">A Different Kind of Partnership</p>
-                <h2 class="syne text-3xl lg:text-4xl font-bold mb-6">One team. One fee. One purpose.</h2>
-                <p class="text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style="color:var(--text-body)">
-                    Specialists who work exclusively with Australian accounting practices.<br>
-                    Not a generalist agency. Not a freelancer. Not another subscription.
-                </p>
-                <div class="flex flex-wrap justify-center gap-3 mb-10">
-                    <span class="tag-mono">Accounting-native</span>
-                    <span class="tag-mono">Custom AI</span>
-                    <span class="tag-mono">Fixed pricing</span>
+<section class="gp-section relative overflow-hidden">
+    <!-- Background image -->
+    <div class="gp-bg"></div>
+    <div class="gp-overlay"></div>
+    <div class="gp-gradient"></div>
+
+    <div class="relative z-10 py-28 px-6 lg:px-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="rounded-[4px] p-12 lg:p-16 relative overflow-hidden text-center reveal" style="background:rgba(11,15,20,0.8); border:1px solid rgba(201,168,76,0.2); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);">
+                <div class="relative">
+                    <p class="section-label mb-5">A Different Kind of Partnership</p>
+                    <h2 class="syne text-3xl lg:text-4xl font-bold mb-6" style="color:#f0ead6;">One team. One fee. One purpose.</h2>
+                    <p class="text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style="color:rgba(240,234,214,0.6);">
+                        Specialists who work exclusively with Australian accounting practices.<br>
+                        Not a generalist agency. Not a freelancer. Not another subscription.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3 mb-10">
+                        <span class="tag-mono" style="border-color:rgba(201,168,76,0.3); color:#c9a84c;">Accounting-native</span>
+                        <span class="tag-mono" style="border-color:rgba(201,168,76,0.3); color:#c9a84c;">Custom AI</span>
+                        <span class="tag-mono" style="border-color:rgba(201,168,76,0.3); color:#c9a84c;">Fixed pricing</span>
+                    </div>
+                    <a href="/partner" class="btn-primary px-10 py-4 rounded-[3px] text-base inline-block">Meet your growth partner →</a>
                 </div>
-                <a href="/partner" class="btn-primary px-10 py-4 rounded-[3px] text-base inline-block">Meet your growth partner →</a>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .gp-section {
+        position: relative;
+    }
+    .gp-bg {
+        position: absolute;
+        inset: 0;
+        background: url('https://static.vecteezy.com/system/resources/previews/035/729/168/non_2x/ai-generated-silhouettes-of-people-businessmen-financiers-executives-against-the-background-of-a-panoramic-window-of-a-glass-skyscraper-in-the-office-ai-generated-image-free-photo.jpg') center center / cover no-repeat;
+        z-index: 0;
+    }
+    .gp-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(7, 10, 15, 0.65);
+        z-index: 1;
+    }
+    .gp-gradient {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(to bottom, #0d1117 0%, transparent 30%),
+            linear-gradient(to top, #0d1117 0%, transparent 30%);
+        z-index: 2;
+    }
+</style>
